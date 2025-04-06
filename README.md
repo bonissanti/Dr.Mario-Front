@@ -1,61 +1,59 @@
 DrMarioRemake-Frontend/
 ├── public/
-│   ├── index.html              # Entry HTML file
-│   └── assets/                 # Static resources (images, CSS, etc.)
-│
+│   ├── index.html
+│   └── assets/
 ├── src/
-│   ├── domain/                 # Domain Layer (Core business logic and rules)
-│   │   ├── game/               # Game-related logic and rules
-│   │   │   ├── GameModel.ts    # Represents the local state of the game
-│   │   │   ├── GameRules.ts    # Business rules governing the game
-│   │   ├── multiplayer/        # Multiplayer-related domain logic
-│   │   │   ├── Player.ts       # Player domain model
-│   │   │   ├── Session.ts      # Represents a multiplayer session
-│   │   ├── chat/               # Chat-related domain logic
-│   │   │   ├── ChatMessage.ts  # Represents a chat message in the domain
-│   │   │   ├── ChatRoom.ts     # Represents a chat room in the domain
-│   │   ├── tournament/         # Tournament-related domain logic
-│   │       ├── Tournament.ts   # Tournament domain model
-│   │
-│   ├── application/            # Application Layer (Ports / services / use-cases)
-│   │   ├── game/
-│   │   │   ├── GameService.ts             # Orchestrates game-related use-cases
-│   │   │   ├── IGameAPI.ts                # Interface defining API contract for the game
-│   │   ├── chat/
-│   │   │   ├── ChatService.ts             # Orchestrates chat-related use-cases
-│   │   │   ├── IChatAPI.ts                # Interface defining API contract for chat
-│   │   ├── multiplayer/
-│   │   │   ├── MultiplayerService.ts      # Multiplayer-related service
-│   │   │   ├── IMultiplayerAPI.ts         # Interface defining API contract for multiplayer
-│   │   ├── tournament/
-│   │   │   ├── TournamentService.ts       # Tournament service
-│   │   │   ├── ITournamentAPI.ts          # Interface for tournament API
-│   │
-│   ├── infrastructure/         # Infrastructure Layer (Adapters for external systems)
-│   │   ├── api/
-│   │   │   ├── GameAPI.ts      # Implementation of the IGameAPI interface
-│   │   │   ├── ChatAPI.ts      # Implementation of the IChatAPI interface
-│   │   │   ├── MultiplayerAPI.ts
-│   │   │   ├── TournamentAPI.ts
-│   │   ├── websocket/
-│   │   │   ├── WebSocketHandler.ts
-|   │   |   ├── GameWebSocket.ts
-│   │
-│   ├── presentation/           # Presentation Layer (UI, views, and components)
-│   │   ├── components/
-│   │   │   ├── game/              # Components specific to the game
-│   │   │   ├── chat/              # Components specific to chat
-│   │   │   ├── multiplayer/       # Components specific to multiplayer
-│   │   │   ├── tournament/        # Components specific to tournaments
-│   │   ├── pages/
-│   │   │   ├── HomePage.ts        # Home page for navigation
-│   │   │   ├── GamePage.ts        # Game page
-│   │   │   ├── TournamentPage.ts  # Tournament page
-│   │   ├── index.ts               # Presentation entry point
-│   │
-│   ├── utils/                  # Utility functions and helpers
-│   ├── main.ts   
-├── package.json                # Project dependencies
-├── tsconfig.json               # TypeScript configuration
-└── README.md   
-
+│   ├── core/                                # Shared modules across contexts
+│   │   ├── domain/                         # Reusable domain logic (e.g., base entities, value objects)
+│   │   │   ├── Entity.ts                   # Base class for aggregates/entities in DDD
+│   │   │   ├── ValueObject.ts              # Base class for value objects
+│   │   │   ├── DomainEvents.ts             # Domain events system
+│   │   ├── utils/                          # Shared utilities like date/time helpers
+│   │   ├── infrastructure/                 # Shared infrastructure for all contexts
+│   │   │   ├── httpClient.ts               # HTTP client wrapper (e.g., Axios or Fetch API)
+│   │   │   ├── WebSocketClient.ts          # Reusable WebSocket wrapper
+│   │   ├── globalTypes/                    # Globally shared types (e.g., User, ErrorState)
+│   │   ├── state/                          # Shared global state handling
+│   │   │   ├── store.ts                    # Centralized state configuration (Redux, Zustand, etc.)
+│   │   │   ├── models/
+│   │   │   │   ├── AuthState.ts
+│   │   │   │   ├── GameState.ts
+│   ├── modules/                            # Feature/Biz logic encapsulated by Bounded Contexts
+│   │   ├── game/                           # Game-specific bounded context
+│   │   │   ├── domain/                     # Game-specific rules/entities (DDD domain layer)
+│   │   │   │   ├── GameModel.ts
+│   │   │   │   ├── Player.ts
+│   │   │   │   ├── GameRules.ts
+│   │   │   ├── application/                # Commands, Queries, Ports (Application Layer)
+│   │   │   │   ├── commands/               # Write operations (CQRS - Command side)
+│   │   │   │   │   ├── StartGameCommand.ts
+│   │   │   │   │   ├── EndGameCommand.ts
+│   │   │   │   ├── queries/                # Read operations (CQRS - Query side)
+│   │   │   │   │   ├── GetGameStateQuery.ts
+│   │   │   │   ├── ports/                  # Interfaces (Ports for APIs, WebSocket adapters)
+│   │   │   │       ├── IGameAPI.ts
+│   │   │   │       ├── IGameWebSocket.ts
+│   │   │   ├── infrastructure/             # Adapters (Infrastructure Layer)
+│   │   │   │   ├── GameAPI.ts              # Implements IGameAPI
+│   │   │   │   ├── GameWebSocketAdapter.ts # Implements IGameWebSocket
+│   │   │   ├── presentation/               # Game-related UI (Presentation Layer)
+│   │   │   │   ├── components/             # Dumb/reusable UI components in game
+│   │   │   │   │   ├── GameBoard.tsx
+│   │   │   │   │   ├── ScoreDisplay.tsx
+│   │   │   │   ├── pages/                  # Page-level components for routing
+│   │   │   │       ├── GamePage.tsx
+│   │   ├── tournament/                     # Tournament-specific bounded context
+│   │   │   ... (same structure as game)
+│   │   ├── chat/                           # Chat-specific bounded context
+│   │   │   ... (same structure as game)
+│   │   ├── friends/                        # Friends management
+│   │   │   ... (same structure as game)
+│   │   ├── stats/                          # Match statistics
+│   │   │   ... (same structure as game)
+│   ├── app/                                # Application-wide setup
+│   │   ├── Router.tsx                      # Centralized React Router config
+│   │   ├── App.tsx                         # Root entry point React component
+│   ├── main.tsx                            # App bootstrap and dependency injection
+├── package.json
+├── tsconfig.json
+└── README.md
