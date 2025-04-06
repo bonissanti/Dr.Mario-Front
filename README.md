@@ -1,51 +1,61 @@
 DrMarioRemake-Frontend/
-├── public/                     
-│   ├── index.html              
-│   └── assets/                 
+├── public/
+│   ├── index.html              # Entry HTML file
+│   └── assets/                 # Static resources (images, CSS, etc.)
+│
 ├── src/
-│   ├── domain/                   # Regras do jogo no frontend
-│   │   ├── game/                 
-│   │   │   ├── GameModel.ts      # Estado do jogo no cliente
-│   │   │   ├── GameRules.ts      # Regras locais do jogo
-│   │   ├── multiplayer/          
-│   │   │   ├── Player.ts         
-│   │   │   ├── Session.ts        
-│   │   ├── chat/                 
-│   │   │   ├── ChatMessage.ts    
-│   │   │   ├── ChatRoom.ts       
-│   │   ├── tournament/           
-│   │       ├── Tournament.ts     
-│   ├── application/              # Serviços que se comunicam com a API
+│   ├── domain/                 # Domain Layer (Core business logic and rules)
+│   │   ├── game/               # Game-related logic and rules
+│   │   │   ├── GameModel.ts    # Represents the local state of the game
+│   │   │   ├── GameRules.ts    # Business rules governing the game
+│   │   ├── multiplayer/        # Multiplayer-related domain logic
+│   │   │   ├── Player.ts       # Player domain model
+│   │   │   ├── Session.ts      # Represents a multiplayer session
+│   │   ├── chat/               # Chat-related domain logic
+│   │   │   ├── ChatMessage.ts  # Represents a chat message in the domain
+│   │   │   ├── ChatRoom.ts     # Represents a chat room in the domain
+│   │   ├── tournament/         # Tournament-related domain logic
+│   │       ├── Tournament.ts   # Tournament domain model
+│   │
+│   ├── application/            # Application Layer (Ports / services / use-cases)
 │   │   ├── game/
-│   │   │   ├── GameService.ts    # Lida com WebSockets e API REST
-│   │   ├── multiplayer/
-│   │   │   ├── MultiplayerService.ts
+│   │   │   ├── GameService.ts             # Orchestrates game-related use-cases
+│   │   │   ├── IGameAPI.ts                # Interface defining API contract for the game
 │   │   ├── chat/
-│   │   │   ├── ChatService.ts    
+│   │   │   ├── ChatService.ts             # Orchestrates chat-related use-cases
+│   │   │   ├── IChatAPI.ts                # Interface defining API contract for chat
+│   │   ├── multiplayer/
+│   │   │   ├── MultiplayerService.ts      # Multiplayer-related service
+│   │   │   ├── IMultiplayerAPI.ts         # Interface defining API contract for multiplayer
 │   │   ├── tournament/
-│   │   │   ├── TournamentService.ts
-│   ├── infrastructure/           # Comunicação com backend
+│   │   │   ├── TournamentService.ts       # Tournament service
+│   │   │   ├── ITournamentAPI.ts          # Interface for tournament API
+│   │
+│   ├── infrastructure/         # Infrastructure Layer (Adapters for external systems)
 │   │   ├── api/
-│   │   │   ├── httpClient.ts     # Cliente para API REST
-│   │   │   ├── endpoints.ts      # Endpoints da API
+│   │   │   ├── GameAPI.ts      # Implementation of the IGameAPI interface
+│   │   │   ├── ChatAPI.ts      # Implementation of the IChatAPI interface
+│   │   │   ├── MultiplayerAPI.ts
+│   │   │   ├── TournamentAPI.ts
 │   │   ├── websocket/
-│   │   │   ├── socket.ts         # Cliente WebSocket
-│   │   │   ├── gameEvents.ts     # Eventos WebSocket do jogo
-│   │   │   ├── chatEvents.ts     # Eventos WebSocket do chat
-│   │   │   ├── multiplayerEvents.ts  
-│   ├── presentation/             # Interface do usuário
-│   │   ├── components/           
-│   │   │   ├── game/             
-│   │   │   ├── chat/             
-│   │   │   ├── multiplayer/      
-│   │   │   ├── tournament/       
+│   │   │   ├── WebSocketHandler.ts
+|   │   |   ├── GameWebSocket.ts
+│   │
+│   ├── presentation/           # Presentation Layer (UI, views, and components)
+│   │   ├── components/
+│   │   │   ├── game/              # Components specific to the game
+│   │   │   ├── chat/              # Components specific to chat
+│   │   │   ├── multiplayer/       # Components specific to multiplayer
+│   │   │   ├── tournament/        # Components specific to tournaments
 │   │   ├── pages/
-│   │   │   ├── HomePage.ts       
-│   │   │   ├── GamePage.ts       
-│   │   │   ├── TournamentPage.ts
-│   │   ├── index.ts              
-│   ├── utils/                    
-│   ├── main.ts                   
-├── package.json                  
-├── tsconfig.json                 
-└── README.md                     
+│   │   │   ├── HomePage.ts        # Home page for navigation
+│   │   │   ├── GamePage.ts        # Game page
+│   │   │   ├── TournamentPage.ts  # Tournament page
+│   │   ├── index.ts               # Presentation entry point
+│   │
+│   ├── utils/                  # Utility functions and helpers
+│   ├── main.ts   
+├── package.json                # Project dependencies
+├── tsconfig.json               # TypeScript configuration
+└── README.md   
+
