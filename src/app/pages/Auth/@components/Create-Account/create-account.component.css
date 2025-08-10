@@ -1,0 +1,82 @@
+:host {
+    font-family: "Press Start 2P", monospace;
+
+    .bg-pattern {
+        background-color: #4c1d95 !important;
+        background-image: linear-gradient(45deg, #000 25%, transparent 25%),
+        linear-gradient(-45deg, #000 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #000 75%),
+        linear-gradient(-45deg, transparent 75%, #000 75%);
+        background-size: 30px 30px;
+        background-position: 0 0, 0 15px, 15px -15px, -15px 0;
+        opacity: 0.8;
+        overflow: hidden;
+    }
+
+    .nes-menu {
+        --bg-color: white;
+        --border-color: black;
+        position: relative;
+        padding: 24px;
+        background-color: var(--bg-color);
+        color: var(--border-color);
+        font-family: 'Press Start 2P', monospace;
+        border: 3px solid var(--border-color);
+        box-shadow: -10px 0 var(--border-color),
+        10px 0 var(--border-color),
+        0 -10px var(--border-color),
+        0 10px var(--border-color);
+    }
+
+    .nes-button {
+        --bg-color: white;
+        --border-color: black;
+        font-family: 'Press Start 2P', monospace;
+        border: 3px solid var(--border-color) !important;
+        transition: 0.25s;
+        cursor: pointer;
+        padding: 10px 20px;
+        box-shadow: 5px 5px black !important;
+        font-weight: bolder;
+    }
+
+    .nes-button:hover{
+        --bg-color: black;
+        background-color: var(--bg-color) !important;
+    }
+
+    .nes-button:active {
+        box-shadow: 0 0 0 black !important;
+        transform: translate(5px, 5px) !important;
+    }
+
+    h2 {
+        font-size: 1.5rem !important;
+    }
+
+    p {
+        font-size: 0.68rem !important;
+    }
+
+    label {
+        text-align: left !important;
+        font-size: 0.7rem !important;
+    }
+
+    button {
+        padding: 0.6rem 0.5rem !important;
+        font-size: 0.7rem !important;
+    }
+
+    input {
+        font-size: 0.7rem !important;
+    }
+
+    span {
+        font-size: 0.7rem !important;
+    }
+
+    a {
+        font-size: 0.48rem !important;
+    }
+}
