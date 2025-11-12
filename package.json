@@ -8,17 +8,19 @@
     "build": "vite build",
     "preview": "vite preview",
     "test": "jest",
-    "css:build": "npx @tailwindcss/cli -i src/Shared/styles.css -o src/Shared/output.css",
+    "css:build": "npx @tailwindcss/cli -i src/shared/styles.css -o src/shared/output.css",
     "test:browser": "vitest"
   },
   "devDependencies": {
     "@faker-js/faker": "^9.7.0",
     "@playwright/test": "^1.54.0",
+    "@types/axios": "^0.9.36",
     "@types/jest": "^29.5.14",
     "@types/uuid": "^10.0.0",
     "@vitest/browser": "^3.2.4",
     "autoprefixer": "^10.4.21",
     "daisyui": "^5.0.35",
+    "jest-environment-jsdom": "^30.0.5",
     "playwright": "^1.54.0",
     "postcss": "^8.5.3",
     "prettier": "^3.3.1",
@@ -30,6 +32,9 @@
     "vite": "^6.3.5"
   },
   "dependencies": {
+    "axios": "^1.11.0",
+    "cally": "^0.8.0",
+    "countries-list": "^3.2.0",
     "uuid": "^11.1.0"
   }
 }

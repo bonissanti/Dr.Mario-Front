@@ -4,14 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - Dr. Mario Game</title>
-    <script>
-      (function(){
-        const theme = localStorage.getItem('theme') || 'light';
-        document.documentElement.setAttribute('data-theme', theme);
-      })();
-    </script>
     <link rel="stylesheet" href="/src/shared/output.css">
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+  <style>
+    body {
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+    }
+
+    body.loaded {
+        visibility: visible;
+        opacity: 1;
+    }
+  </style>
 </head>
 <body>
     <div id="app"></div>
@@ -41,5 +47,14 @@
         </section>
     </main>
 </div>
+<script>
+  window.addEventListener('load', () => {
+    document.body.classList.add('loaded');
+  });
+
+  setTimeout(() => {
+    document.body.classList.add('loaded');
+  }, 2000);
+</script>
 </body>
 </html>
