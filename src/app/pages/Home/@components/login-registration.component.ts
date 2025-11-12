@@ -4,6 +4,8 @@ class LoginRegistration extends HTMLElement
     {
         super();
         this.attachShadow({ mode: 'open'});
+        this.style.visibility = 'hidden';
+        this.style.opacity = '0';
     }
 
     async connectedCallback(): Promise<void>
@@ -42,11 +44,17 @@ class LoginRegistration extends HTMLElement
                     a {
                         font-size: 0.48rem !important;
                     }
+                    
+                    html {
+                      visibility: visible;
+                      opacity: 1;
+                    }
                 </style>
                 ${content}
             `;
         }
         await this.createAccountNavigation();
+        this.showComponent();
     }
 
     async disconnectCallback(): Promise<void>
@@ -74,6 +82,16 @@ class LoginRegistration extends HTMLElement
             const createAccount = document.querySelector('#app');
             if (createAccount)
                 createAccount.innerHTML = '<create-account></create-account>'
+        });
+    }
+
+    private showComponent(): void
+    {
+        this.style.transition = 'opacity 0.3s ease-in-out';
+
+        requestAnimationFrame(() => {
+            this.style.visibility = 'visible';
+            this.style.opacity = '1';
         });
     }
 }

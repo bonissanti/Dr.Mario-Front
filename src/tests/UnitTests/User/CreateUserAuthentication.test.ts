@@ -19,7 +19,7 @@
 //     })
 // })
 import { NotificationContext } from '../../../shared/stores/NotificationContext/NotificationContext.ts';
-import { CreateUserDTO } from '../../../app/pages/Auth/@components/@dto/Authentication/CreateUserDTO.ts';
+import { CreateUserDTO } from '../../../app/pages/Auth/@entities/CreateUserDTO.ts';
 import { ProxyData } from '../../../shared/components/ProxyData/ProxyData.ts';
 import { ErrorCatalog } from '../../../shared/stores/NotificationContext/ErrorCatalog/ErrorCatalog.ts';
 

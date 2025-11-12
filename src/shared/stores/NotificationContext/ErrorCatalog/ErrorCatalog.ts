@@ -14,4 +14,7 @@ export class ErrorCatalog
     public static readonly InvalidPassword: ErrorCode = new ErrorCode(104, "Error: password must be between 8 and 30 characters long");
     public static readonly InvalidUsername: ErrorCode = new ErrorCode(105, "Error: username must be at least 5 characters long");
     public static readonly InvalidEmail: ErrorCode = new ErrorCode(106, "Error: email must be a valid email address");
+    public static readonly InvalidConfirmPassword: ErrorCode = new ErrorCode(107, "Error: confirm password must be between 8 and 30 characters long");
+    public static readonly InvalidDifferentPassword: ErrorCode = new ErrorCode(108, "Error: password don't are equals");
+    public static readonly InvalidBirthDate: ErrorCode = new ErrorCode(109, "Error: birth date must be a valid date");
 }

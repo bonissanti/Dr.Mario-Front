@@ -10,7 +10,7 @@ const config: Config = {
   clearMocks: true,
   collectCoverage: true,
   coverageDirectory: "coverage",
-  testMatch: ["<rootDir>/app/tests/**/*.test.ts"],
+  testMatch: ["<rootDir>/src/tests/**/*.test.ts"],
   preset: 'ts-jest',
   testEnvironment: 'jsdom',
 };
