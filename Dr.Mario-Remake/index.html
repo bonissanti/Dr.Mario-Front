@@ -10,10 +10,40 @@
       <title>dr-mario-remake</title>
   </head>
 
+  <header class="fixed top-0 left-0 right-0 w-full bg-gray-100 z-50 border-b border-gray-300">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+          <!-- Logo -->
+          <div id="logo" class="text-xl sm:text-2xl font-bold text-gray-800 flex-shrink-0">
+              Dr. Mario
+          </div>
 
-  <!-- page mainly configuration -->
+          <!-- Desktop Navigation (hidden on mobile) -->
+          <nav class="hidden md:flex gap-6 text-gray-600 font-medium">
+              <a href="#" class="text-sm text-gray-600 hover:text-gray-900 transition">Home</a>
+              <a href="#" class="text-sm text-gray-600 hover:text-gray-900 transition">About</a>
+              <a href="#" class="text-sm text-gray-600 hover:text-gray-900 transition">How to play</a>
+          </nav>
+
+          <!-- Mobile Menu Button (visible only on mobile) -->
+          <button id="menu-toggle" class="md:hidden p-2 rounded hover:bg-gray-100">
+              <svg class="w-6 h-6 text-gray-600" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+              </svg>
+          </button>
+      </div>
+
+      <!-- Mobile Navigation Menu (hidden by default) -->
+      <nav id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
+          <div class="px-4 sm:px-6 py-4 space-y-3">
+              <a href="#" class="block text-sm text-gray-600 hover:text-gray-900 py-2 transition">Home</a>
+              <a href="#" class="block text-sm text-gray-600 hover:text-gray-900 py-2 transition">About</a>
+              <a href="#" class="block text-sm text-gray-600 hover:text-gray-900 py-2 transition">How to play</a>
+          </div>
+      </nav>
+  </header>  <!-- page mainly configuration -->
+
   <body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen p-24">
-    <main class="flex flex-col items-center justify-center">
+    <main class="flex flex-col items-center justify-center mt-4">
 
     <!--  title and subtitle-->
         <div class="flex flex-col items-center justify-center v-screen">
@@ -30,8 +60,8 @@
 
     <!--buttons and fav on github - TODO: add star on github button-->
         <div class="flex-col items-center justify-center mt-10 space-x-4">
-            <button id="PlayButton" class="!bg-blue-500 hover:!bg-blue-600 text-gray-200 font-bold py-2 px-4 rounded">Play now!</button>
-            <button id="GitHubButton" class="!bg-gray-800 hover:!bg-gray-900 text-gray-200 font-bold py-2 px-4 rounded">Favorite me on GitHub</button>
+            <button id="PlayButton" class="!bg-blue-500 hover:!bg-blue-600 text-gray-200 font-bold py-2 px-4 transition rounded">Play now!</button>
+            <button id="GitHubButton" class="!bg-gray-800 hover:!bg-gray-900 transition text-gray-200 font-bold py-2 px-4 rounded">Favorite me on GitHub</button>
         </div>
     <!-- end buttons and fav on github-->
 
@@ -87,7 +117,7 @@
             <!-- Top section with logo and nav -->
             <div class="flex items-center justify-between mb-8">
                 <div class="flex items-center gap-2">
-                    <svg class="w-6 h-6 text-blue-400" fill="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-6 h-6 text-blue-400" viewBox="0 0 24 24">
                         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
                     </svg>
                     <span class="font-semibold text-gray-900">Bonissanti</span>
@@ -98,12 +128,8 @@
                     <a href="#" class="text-sm text-gray-600 hover:text-gray-900">Contact Me</a>
                 </div>
                 <div class="flex gap-4">
-                    <a href="#" class="text-blue-400 hover:text-blue-600">
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2s9 5 20 5a9.5 9.5 0 00-9-5.5c4.75 2.25 7-7 7-7z"/>
-                        </svg>
-                    </a>
-                    <div class="w-5 h-5 bg-gray-800 rounded-full"></div>
+                    <a href="#"><sl-icon name="linkedin"></sl-icon></a>
+                    <a href="#"><sl-icon name="github"></sl-icon></a>
                 </div>
             </div>
 
@@ -118,7 +144,6 @@
         </div>
     </footer>
     <!-- end footer-->
-
 
   </body>
 </html>
