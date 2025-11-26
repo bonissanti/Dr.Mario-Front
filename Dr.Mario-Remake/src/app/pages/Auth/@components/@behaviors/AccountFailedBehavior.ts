@@ -17,7 +17,7 @@ export class AccountFailedBehavior extends AUIBehavior
         this.showFailedModal(payload);
     }
 
-    private showFailedModal(payload: any): void
+    private showFailedModal(): void
     {
         const modal = document.createElement('dialog');
         modal.id = 'failed-modal';

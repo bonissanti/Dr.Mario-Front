@@ -85,7 +85,6 @@ class CreateAccountComponent extends HTMLElement
      *
      * @param {Event} event The paste or input event.
      * @param {string} property The name of the property to handle, such as 'firstName', 'lastName', 'password', etc.
-     * @param {HTMLInputElement} eventTarget The input element associated with the event.
      * @return {void} This method does not return a value but may add errors to the notification context if validation fails.
      */
 
