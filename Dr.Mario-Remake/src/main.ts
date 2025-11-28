@@ -1,24 +1,12 @@
-import './style.css'
-import typescriptLogo from './typescript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.ts'
+import type {IRouter} from "./shared/components/Router/IRouter.ts";
+import {RouterService} from "./shared/components/Router/RouterService.ts";
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
-  </div>
-`
+const routes: IRouter[] = [
+    { path: '/', component: '/pages/home.html', name: 'Home' },
+    { path: '/about', component: '/pages/about.html', name: 'About' },
+    { path: '/contact', component: '/pages/howtoplay.html', name: 'How to Play' },
+    { path: '/error-404', component: '/pages/error/error404.html', name: 'Error 404' },
+]
 
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+const router = RouterService.getInstance('app');
+routes.forEach(route => router.addRoutes(route));
