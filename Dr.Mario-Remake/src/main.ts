@@ -10,3 +10,6 @@ const routes: IRouter[] = [
 
 const router = RouterService.getInstance('app');
 routes.forEach(route => router.addRoutes(route));
+
+await router.handleRoute();
+(globalThis as any).router = router;
