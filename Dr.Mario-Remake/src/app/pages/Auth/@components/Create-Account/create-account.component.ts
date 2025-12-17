@@ -1,4 +1,4 @@
-import { CreateUserDTO } from '../../@entities/CreateUserDTO.ts';
+import type { CreateUserDTO } from '../../@entities/CreateUserDTO.ts';
 import { ProxyData } from '../../../../../shared/components/ProxyData/ProxyData.ts';
 import { NotificationContext } from '../../../../../shared/stores/NotificationContext/NotificationContext.ts';
 import { ErrorCatalog } from '../../../../../shared/stores/NotificationContext/ErrorCatalog/ErrorCatalog.ts';
@@ -77,7 +77,7 @@ class CreateAccountComponent extends HTMLElement
 
     async disconnectedCallback(): Promise<void>
     {
-        //TODOs: hide component when it's being removed from DOM
+        //TODOs: hide a component when it's being removed from DOM
     }
 
     /**
@@ -151,6 +151,21 @@ class CreateAccountComponent extends HTMLElement
 
     private validateInputs(property: string, value: any): void
     {
+        if (this.validateBasicInfos(property, value))
+            return
+
+        if (property === 'username' && value.length < 4)
+            this.notificationContext.addError(ErrorCatalog.InvalidUsername);
+
+        if (property === 'email' && !value.includes('@'))
+            this.notificationContext.addError(ErrorCatalog.InvalidEmail);
+
+        if (property === 'birth-date' && (value.length < 10 || !this.ValidateBirthDate(value)))
+            this.notificationContext.addError(ErrorCatalog.InvalidBirthDate);
+    }
+
+    private validateBasicInfos(property: string, value: any): boolean
+    {
         if (property === 'firstName' && value.length < 3)
             this.notificationContext.addError(ErrorCatalog.InvalidFirstName);
 
@@ -169,9 +184,7 @@ class CreateAccountComponent extends HTMLElement
                 this.notificationContext.addError(ErrorCatalog.InvalidDifferentPassword);
         }
 
-        if (property === 'username' && value.length < 4)
-            this.notificationContext.addError(ErrorCatalog.InvalidUsername);
-
+        return this.notificationContext.hasErrors();
     }
 
     private ValidateBirthDate(value: string): boolean
