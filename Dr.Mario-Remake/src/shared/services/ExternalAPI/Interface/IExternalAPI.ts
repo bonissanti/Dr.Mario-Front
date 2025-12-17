@@ -1,4 +1,4 @@
-import { APIResponse } from '../../stores/APIResponse/APIResponse.ts';
+import { APIResponse } from '../../../components/APIResponse/APIResponse.ts';
 import { IRequestOptions } from './IRequestOptions.ts';
 
 export interface IExternalAPI

@@ -1,4 +1,4 @@
-import { EventBus } from '../../../shared/stores/EventBus/Concrete/EventBus.ts';
+import { EventBus } from '../../../shared/components/EventBus/Concrete/EventBus.ts';
 import { AuthEventsEnum } from '../../../app/pages/Auth/@entities/AuthEventsEnum.ts';
 import { CreateAccountExternalAPI } from '../../../app/pages/Auth/@service/CreateAccountExternalAPI.ts';
 import { CreateAccountUIHandler } from '../../../app/pages/Auth/@components/@uihandler/CreateAccountUIHandler.ts';

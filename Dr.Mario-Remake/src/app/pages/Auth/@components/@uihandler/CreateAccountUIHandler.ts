@@ -1,5 +1,5 @@
-import { ISubscription } from '../../../../../shared/stores/EventBus/Interface/ISubscription.ts';
-import { EventBus } from '../../../../../shared/stores/EventBus/Concrete/EventBus.ts';
+import { ISubscription } from '../../../../../shared/components/EventBus/Interface/ISubscription.ts';
+import { EventBus } from '../../../../../shared/components/EventBus/Concrete/EventBus.ts';
 import { AuthEventsEnum } from '../../@entities/AuthEventsEnum.ts';
 import { IUIBehavior } from '../../../../../shared/components/UIBehavior/Interface/IUIBehavior.ts';
 import { AccountCreatedBehavior } from '../@behaviors/AccountCreatedBehavior.ts';

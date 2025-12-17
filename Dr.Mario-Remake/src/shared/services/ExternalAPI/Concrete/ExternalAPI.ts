@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { IExternalAPI } from '../Interface/IExternalAPI.ts';
 import { IRequestOptions } from '../Interface/IRequestOptions.ts';
-import { EventBus } from '../../stores/EventBus/Concrete/EventBus.ts';
-import { APIResponse } from '../../stores/APIResponse/APIResponse.ts';
+import { EventBus } from '../../../components/EventBus/Concrete/EventBus.ts';
+import { APIResponse } from '../../../components/APIResponse/APIResponse.ts';
 
 export abstract class ExternalAPI<TEventEnum> implements IExternalAPI
 {

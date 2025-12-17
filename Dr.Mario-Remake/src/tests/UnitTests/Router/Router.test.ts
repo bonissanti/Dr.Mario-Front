@@ -1,25 +1,39 @@
-import { describe, beforeEach, it, expect, test } from 'vitest';
-import type {IRouter} from "../../../shared/components/Router/IRouter.ts";
-import {RouterService} from "../../../shared/components/Router/RouterService.ts";
+import {describe, beforeEach, it, expect, afterEach} from 'vitest';
+import type {IRouter} from "../../../shared/services/Router/IRouter.ts";
+import {RouterService} from "../../../shared/services/Router/RouterService.ts";
+import {MockComponentLoader} from "../../../shared/fixtures/MockComponentLoader.ts";
 
 describe('Router Test', () => {
+    let mockRoutes: IRouter[] = []
+    let router: RouterService;
+    let loader: MockComponentLoader
 
     beforeEach(() => {
-        const mockRoutes: IRouter[] = [
-            { path: '/', component: '/pages/home.html', name: 'Home' },
+        mockRoutes = [
+            { path: '/', component: '/index.html', name: 'Home' },
             { path: '/about', component: '/pages/about.html', name: 'About' },
             { path: '/contact', component: '/pages/howtoplay.html', name: 'How to Play' },
             { path: '/error-404', component: '/pages/error/error404.html', name: 'Error 404' },
         ]
 
-        const router = RouterService.getInstance('app');
+        loader = new MockComponentLoader();
+        router = new RouterService(loader);
         mockRoutes.forEach(route => router.addRoutes(route));
     })
 
-    it('handle route should redirect to the correct page', () => {
-        const lala = 1 + 1;
+    afterEach(() => {
+        loader.loadedComponent = null
+    })
 
-        expect(lala).toBe(2);
+    it('handle route should redirect to the correct page', async () => {
+        await router.navigate('/')
 
+        expect(loader.loadedComponent).toBe('/index.html')
+    })
+
+    it('handle route should redirect to 404 page if route is not found', async () => {
+        await router.navigate('/not-found')
+
+        expect(loader.loadedComponent).toBe('/error-404')
     })
 })

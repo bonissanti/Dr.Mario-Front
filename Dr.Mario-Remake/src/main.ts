@@ -1,5 +1,5 @@
-import type {IRouter} from "./shared/components/Router/IRouter.ts";
-import {RouterService} from "./shared/components/Router/RouterService.ts";
+import type {IRouter} from "./shared/services/Router/IRouter.ts";
+import {RouterService} from "./shared/services/Router/RouterService.ts";
 
 const routes: IRouter[] = [
     { path: '/', component: '/pages/home.html', name: 'Home' },

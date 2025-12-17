@@ -1,8 +1,8 @@
-import { EventBus } from '../../../../shared/stores/EventBus/Concrete/EventBus.ts';
+import { EventBus } from '../../../../shared/components/EventBus/Concrete/EventBus.ts';
 import { AuthEventsEnum } from '../@entities/AuthEventsEnum.ts';
-import { ExternalAPI } from '../../../../shared/services/Concrete/ExternalAPI.ts';
+import { ExternalAPI } from '../../../../shared/services/ExternalAPI/Concrete/ExternalAPI.ts';
 import { CreateUserDTO } from '../@entities/CreateUserDTO.ts';
-import { APIResponse } from '../../../../shared/stores/APIResponse/APIResponse.ts';
+import { APIResponse } from '../../../../shared/components/APIResponse/APIResponse.ts';
 
 export class CreateAccountExternalAPI extends ExternalAPI<AuthEventsEnum>
 {
@@ -21,7 +21,7 @@ export class CreateAccountExternalAPI extends ExternalAPI<AuthEventsEnum>
         this.eventHandler.publish(AuthEventsEnum.ACCOUNT_CREATED, {
             user: data.userUuid,
             success: true,
-            timestamp: Date() // ou date.now()
+            timestamp: String(new Date())
         });
     }
 
@@ -30,7 +30,7 @@ export class CreateAccountExternalAPI extends ExternalAPI<AuthEventsEnum>
         this.eventHandler.publish(AuthEventsEnum.ACCOUNT_FAILED, {
             error: data.error,
             success: false,
-            timestamp: Date()
+            timestamp: String(new Date())
         });
     }
 
@@ -41,7 +41,7 @@ export class CreateAccountExternalAPI extends ExternalAPI<AuthEventsEnum>
             code: data.code,
             success: false,
             stackTrace: data.stack,
-            timestamp: Date()
+            timestamp: String(new Date())
         });
     }
 }

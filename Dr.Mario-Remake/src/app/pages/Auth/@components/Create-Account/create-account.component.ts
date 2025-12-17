@@ -3,7 +3,7 @@ import { ProxyData } from '../../../../../shared/components/ProxyData/ProxyData.
 import { NotificationContext } from '../../../../../shared/stores/NotificationContext/NotificationContext.ts';
 import { ErrorCatalog } from '../../../../../shared/stores/NotificationContext/ErrorCatalog/ErrorCatalog.ts';
 import { CreateAccountUIHandler } from '../@uihandler/CreateAccountUIHandler.ts';
-import { EventBus } from '../../../../../shared/stores/EventBus/Concrete/EventBus.ts';
+import { EventBus } from '../../../../../shared/components/EventBus/Concrete/EventBus.ts';
 import { AuthEventsEnum } from '../../@entities/AuthEventsEnum.ts';
 import { CreateAccountExternalAPI } from '../../@service/CreateAccountExternalAPI.ts';
 import { ComponentAnimationHelper, ComponentConfiguration } from '../@configuration/ComponentConfiguration.ts';
@@ -38,7 +38,7 @@ class CreateAccountComponent extends HTMLElement
             if (this.debounceTimer)
                 clearTimeout(this.debounceTimer);
 
-            this.debounceTimer = window.setTimeout(() => {
+            this.debounceTimer = globalThis.window.setTimeout(() => {
                 this.validateInputs(property, value);
                 this.updateUI();
             }, ComponentConfiguration.behavior.debounceDelay);
@@ -77,7 +77,7 @@ class CreateAccountComponent extends HTMLElement
 
     async disconnectedCallback(): Promise<void>
     {
-        //TODO: hide component when it's being removed from DOM
+        //TODOs: hide component when it's being removed from DOM
     }
 
     /**
@@ -100,7 +100,7 @@ class CreateAccountComponent extends HTMLElement
     {
         if (property === 'birth-date')
         {
-            let value = eventTarget.value.replace(/\D/g, '');
+            let value = eventTarget.value.replaceAll(/\D/g, '');
             let formattedInput = '';
 
             if (value.length > 0)
@@ -132,12 +132,11 @@ class CreateAccountComponent extends HTMLElement
         placeHolderOptions.disabled = true;
         placeHolderOptions.selected = true;
 
-        for (let i = 0; i < countriesList.length; i++)
-        {
+        for (const element of countriesList) {
             const option = document.createElement('option');
             option.classList.add('text-gray-600');
-            option.value = countriesList[i].code;
-            option.textContent = `${countriesList[i].emoji} ${countriesList[i].name}`;
+            option.value = element.code;
+            option.textContent = `${element.emoji} ${element.name}`;
             countryInput.appendChild(option);
         }
     }
@@ -173,11 +172,6 @@ class CreateAccountComponent extends HTMLElement
         if (property === 'username' && value.length < 4)
             this.notificationContext.addError(ErrorCatalog.InvalidUsername);
 
-        if (property === 'email' && !value.includes('@'))
-            this.notificationContext.addError(ErrorCatalog.InvalidEmail);
-
-        if (property === 'birth-date' && (value.length < 10 || !this.ValidateBirthDate(value)))
-            this.notificationContext.addError(ErrorCatalog.InvalidBirthDate);
     }
 
     private ValidateBirthDate(value: string): boolean
