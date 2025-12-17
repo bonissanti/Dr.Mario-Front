@@ -6,7 +6,7 @@ import {Subscription} from "./Subscription.ts";
 
 export class EventBus<T> implements IEventBus<T>
 {
-    private handlers: Map<string, EventHandler<T>> = new Map();
+    private readonly handlers: Map<string, EventHandler<T>> = new Map();
     private options: EventBusOptions = defaultEventBusOptions;
 
     constructror(options: EventBusOptions = defaultEventBusOptions)

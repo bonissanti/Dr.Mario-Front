@@ -3,8 +3,8 @@ import {IEventBus} from "../Interface/IEventBus.ts";
 
 export class Subscription<T> implements  ISubscription
 {
-    private uuid: string;
-    private eventBus: IEventBus<T>;
+    private readonly uuid: string;
+    private readonly eventBus: IEventBus<T>;
 
     constructor(uuid: string, eventBus: IEventBus<T>)
     {
