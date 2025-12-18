@@ -1,4 +1,4 @@
-import { CreateAccountStyleConfig, ICreateAccountConfig } from './interfaces/ICreateAccountConfig.ts';
+import {type CreateAccountStyleConfig, type ICreateAccountConfig } from './interfaces/ICreateAccountConfig.ts';
 
 export const ComponentConfiguration: ICreateAccountConfig = {
     style: {
@@ -28,8 +28,6 @@ export class ComponentAnimationHelper
     public static hideComponent(element: HTMLElement, config: CreateAccountStyleConfig): void
     {
         element.style.opacity = config.initialOpacity;
-
-        // TODO: maybe put an effect of a little zoom in and very zoom out. To change to modal
 
         setTimeout(() => {
             element.style.visibility = config.initialVisibility;
