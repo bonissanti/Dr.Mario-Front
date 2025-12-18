@@ -1,12 +1,12 @@
-import axios from 'axios';
-import { IExternalAPI } from '../Interface/IExternalAPI.ts';
-import { IRequestOptions } from '../Interface/IRequestOptions.ts';
+import axios, {type AxiosInstance} from 'axios';
+import type{ IExternalAPI } from '../Interface/IExternalAPI.ts';
+import type { IRequestOptions } from '../Interface/IRequestOptions.ts';
 import { EventBus } from '../../../components/EventBus/Concrete/EventBus.ts';
 import { APIResponse } from '../../../components/APIResponse/APIResponse.ts';
 
 export abstract class ExternalAPI<TEventEnum> implements IExternalAPI
 {
-    protected readonly client: Axios.AxiosInstance;
+    protected readonly client: AxiosInstance;
     protected readonly eventHandler: EventBus<TEventEnum>;
 
     constructor(baseUrl: string, eventBus: EventBus<TEventEnum>)
@@ -39,6 +39,20 @@ export abstract class ExternalAPI<TEventEnum> implements IExternalAPI
         try
         {
             const response = await this.client.put(`${url}`, data, options);
+            return this.handleResult(response);
+        }
+        catch (error)
+        {
+            this.onException(error);
+            throw error;
+        }
+    }
+
+    public async patch<T>(url: string, data?: T, options?: IRequestOptions): Promise<APIResponse>
+    {
+        try
+        {
+            const response = await this.client.patch(`${url}`, data, options);
             return this.handleResult(response);
         }
         catch (error)

@@ -1,5 +1,5 @@
-import {ISubscription} from "./ISubscription.ts";
-import {EventHandler} from "../Type/EventHandler.ts";
+import type {ISubscription} from "./ISubscription.ts";
+import type {EventHandler} from "../Type/EventHandler.ts";
 
 export interface IEventBus<T>
 {

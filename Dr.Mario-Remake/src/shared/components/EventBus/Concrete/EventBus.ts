@@ -1,7 +1,7 @@
-import {IEventBus} from "../Interface/IEventBus.ts";
-import {EventHandler} from "../Type/EventHandler.ts";
-import {defaultEventBusOptions, EventBusOptions} from "../Type/EventBusOptions.ts";
-import {ISubscription} from "../Interface/ISubscription.ts";
+import type {IEventBus} from "../Interface/IEventBus.ts";
+import type {EventHandler} from "../Type/EventHandler.ts";
+import {defaultEventBusOptions, type EventBusOptions} from "../Type/EventBusOptions.ts";
+import type {ISubscription} from "../Interface/ISubscription.ts";
 import {Subscription} from "./Subscription.ts";
 
 export class EventBus<T> implements IEventBus<T>
