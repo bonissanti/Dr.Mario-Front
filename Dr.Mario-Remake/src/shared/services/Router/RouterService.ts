@@ -4,7 +4,6 @@ import type {IComponentLoader} from "../ComponentLoader/IComponentLoader.ts";
 export class RouterService
 {
     public readonly routes: IRouter[] = [];
-    private static readonly instance: RouterService;
     private readonly componentLoader: IComponentLoader;
 
     constructor(componentLoader: IComponentLoader)
@@ -12,13 +11,6 @@ export class RouterService
         this.componentLoader = componentLoader;
         globalThis.addEventListener('popstate', () => this.handleRoute(globalThis.location.pathname));
     }
-
-    // public static getInstance(componentLoader: IComponentLoader): RouterService
-    // {
-    //     if (!RouterService.instance)
-    //         RouterService.instance = new RouterService(componentLoader);
-    //     return RouterService.instance;
-    // }
 
     public addRoutes(newRoute: IRouter): void
     {

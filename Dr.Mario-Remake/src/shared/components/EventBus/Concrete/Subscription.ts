@@ -1,5 +1,5 @@
-import {ISubscription} from "../Interface/ISubscription.ts";
-import {IEventBus} from "../Interface/IEventBus.ts";
+import type {ISubscription} from "../Interface/ISubscription.ts";
+import type {IEventBus} from "../Interface/IEventBus.ts";
 
 export class Subscription<T> implements  ISubscription
 {

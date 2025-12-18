@@ -1,4 +1,5 @@
 import { ProxyData } from '../../../shared/components/ProxyData/ProxyData.ts';
+import {describe, beforeEach, it, expect} from 'vitest';
 
 describe('Proxy unit tests', () => {
     let proxyData: ProxyData;
