@@ -1,4 +1,4 @@
-import { IUIBehavior } from '../Interface/IUIBehavior.ts';
+import type { IUIBehavior } from '../Interface/IUIBehavior.ts';
 import { AuthEventsEnum } from '../../../../app/pages/Auth/@entities/AuthEventsEnum.ts';
 
 export abstract class AUIBehavior implements IUIBehavior
