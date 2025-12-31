@@ -29,6 +29,19 @@ export class RouterService
         await this.componentLoader.load(route.component);
     }
 
+    public async preloadRoute(path: string): Promise<void>
+    {
+        const route: IRouter | undefined = this.routes.find(route => route.path === path);
+
+        if (route)
+            await this.componentLoader.preloadRoute(route.component);
+    }
+
+    public async preloadRoutes(paths: string[]): Promise<void>
+    {
+        await Promise.all(paths.map(path => this.preloadRoute(path)));
+    }
+
     public async navigate(path: string): Promise<void>
     {
         globalThis.history.pushState({}, '', path);
