@@ -51,7 +51,7 @@ const createUserDTOMock: CreateUserDTO =
     firstName: faker.person.firstName(),
     lastName: faker.person.lastName(),
     username: faker.internet.username(),
-    password: "12345",
-    confirmPassword: "12345",
+    password: "password",
+    confirmPassword: "newPassword",
     email: faker.internet.email()
 };
