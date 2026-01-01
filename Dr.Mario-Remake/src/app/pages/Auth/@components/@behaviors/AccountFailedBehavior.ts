@@ -13,8 +13,9 @@ export class AccountFailedBehavior extends AUIBehavior
     {
         const form = this.shadowRoot.getElementById('create-account-form');
         form?.classList.add('hidden');
+        console.error(payload); // temp
 
-        this.showFailedModal(payload);
+        this.showFailedModal();
     }
 
     private showFailedModal(payload: any): void
