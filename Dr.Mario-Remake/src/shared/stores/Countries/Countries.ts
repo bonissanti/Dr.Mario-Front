@@ -1,12 +1,12 @@
 import { countries, getEmojiFlag } from "countries-list";
-import {CountryType} from "./CountryType.ts";
+
+
 
 export class Countries
 {
     private static instance: Countries;
-    public static CountriesList: CountryType[] | null = null;
+    private static CountriesList: { name: any; code: string; continent: any; emoji: any }[] = [];
 
-    constructor (){}
 
     public static getInstance(): Countries
     {
@@ -16,15 +16,14 @@ export class Countries
         return Countries.instance;
     }
 
-    public get CountryNames(): CountryType[]
+    public get CountryNames(): { name: any; code: string; continent: any; emoji: any }[]
     {
-        if (Countries.CountriesList == null)
-            Countries.CountriesList = this.mapCountries();
+        Countries.CountriesList ??= this.mapCountries();
 
         return Countries.CountriesList;
     }
 
-    private mapCountries(): CountryType[]
+    private mapCountries(): { name: any; code: string; continent: any; emoji: any }[]
     {
         const countryCodes = Object.keys(countries) as Array<keyof typeof countries>
 
