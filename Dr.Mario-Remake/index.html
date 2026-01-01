@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./src/style.css" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/themes/light.css" />
+      <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/shoelace-autoloader.js"></script>
+      <title>dr-mario-remake</title>
+  </head>
+
+  <body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen p-24">
+      <header class="fixed top-0 left-0 right-0 w-full bg-gray-100 z-50 border-b border-gray-300">
+          <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+              <!-- Logo -->
+              <div id="logo" class="text-xl sm:text-2xl font-bold text-gray-800 flex-shrink-0">
+                  Dr. Mario
+              </div>
+
+              <!-- Desktop Navigation (hidden on mobile) -->
+              <nav aria-label="desktop-nav" class="hidden md:flex gap-6 text-gray-600 font-medium">
+                  <a href="#" class="text-sm text-gray-600 hover:text-gray-900 transition">Home</a>
+                  <a href="#" class="text-sm text-gray-600 hover:text-gray-900 transition">About</a>
+                  <a href="#" class="text-sm text-gray-600 hover:text-gray-900 transition">How to play</a>
+              </nav>
+
+              <!-- Mobile Menu Button (visible only on mobile) -->
+              <button id="menu-toggle" class="md:hidden p-2 rounded hover:bg-gray-100">
+                  <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                  </svg>
+              </button>
+          </div>
+
+          <!-- Mobile Navigation Menu (hidden by default) -->
+          <nav aria-label="mobile-nav" id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
+              <div class="px-4 sm:px-6 py-4 space-y-3">
+                  <a href="#" class="block text-sm text-gray-600 hover:text-gray-900 py-2 transition">Home</a>
+                  <a href="#" class="block text-sm text-gray-600 hover:text-gray-900 py-2 transition">About</a>
+                  <a href="#" class="block text-sm text-gray-600 hover:text-gray-900 py-2 transition">How to play</a>
+              </div>
+          </nav>
+      </header>  <!-- page mainly configuration -->
+
+      <!--    This is where all page content will be loaded-->
+      <div id="app"></div>
+
+      <!--  footer-->
+      <footer class="w-full border-t border-gray-400 mt-16">
+        <div class="max-w-7xl mx-auto px-6 py-8 text-center justify-center flex flex-col">
+
+            <!-- Top section with logo and nav -->
+            <div class="flex items-center justify-between mb-8">
+                <div class="flex items-center gap-2">
+                    <svg class="w-6 h-6 text-blue-400" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+                    </svg>
+                    <span class="font-semibold text-gray-900">Bonissanti</span>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-sm text-gray-600 hover:text-gray-900">How to play</a>
+                    <a href="#" class="text-sm text-gray-600 hover:text-gray-900">Portfolio</a>
+                    <a href="#" class="text-sm text-gray-600 hover:text-gray-900">Contact Me</a>
+                </div>
+                <div class="flex gap-4">
+                    <a href="#"><sl-icon name="linkedin"></sl-icon></a>
+                    <a href="#"><sl-icon name="github"></sl-icon></a>
+                </div>
+            </div>
+
+            <!-- Divider -->
+            <div class="border-t border-gray-200 pt-6"></div>
+
+            <!-- Bottom section with company info -->
+            <div class="text-xs text-gray-500 space-y-1 ">
+                <p>São Paulo, Brazil</p>
+                <p>All rights reserved to Nintendo</p>
+            </div>
+        </div>
+    </footer>
+      <!-- end footer-->
+
+      <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
+
+
