@@ -33,11 +33,15 @@ export class ComponentLoader implements IComponentLoader
     public async preloadRoute(componentPath: string): Promise<void>
     {
         if (this.checkIfComponentIsCached(componentPath))
+        {
+            await this.defineShoelaceComponents();
             return;
+        }
 
         const response: Response = await fetch(componentPath);
         const html: string = await response.text();
         this.setNewComponent(componentPath, html);
+        await this.defineShoelaceComponents();
     }
 
     private checkIfIsValidReusableComponent(componentPath: string): boolean
@@ -74,5 +78,20 @@ export class ComponentLoader implements IComponentLoader
         }
 
         this.cachedComponents.set(componentPath, { html: response, cachedAt: Date.now() });
+    }
+
+    private async defineShoelaceComponents(): Promise<void>
+    {
+        // Get all Shoelace elements that might not be defined yet
+        const shoelaceElements = this.hostElement.querySelectorAll(':not(:defined)');
+
+        if (shoelaceElements.length === 0) return;
+
+        // Wait for all custom elements to be defined
+        const promises = Array.from(shoelaceElements).map(el => {
+            return customElements.whenDefined(el.tagName.toLowerCase());
+        });
+
+        await Promise.allSettled(promises);
     }
 }

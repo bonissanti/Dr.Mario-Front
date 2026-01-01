@@ -1,6 +1,7 @@
 import type {IRouter} from "./shared/services/Router/IRouter.ts";
 import {RouterService} from "./shared/services/Router/RouterService.ts";
 import {ComponentLoader} from "./shared/services/ComponentLoader/ComponentLoader.ts";
+import '@awesome.me/webawesome/dist/styles/webawesome.css';
 
 const element: HTMLElement | null = document.getElementById('app');
 const loader = new ComponentLoader(element!);
