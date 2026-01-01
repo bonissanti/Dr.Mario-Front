@@ -26,7 +26,7 @@ export class NotificationContext
 
     public toString(): string
     {
-        return this.error.map((error) => error.toString()).join('\n');
+        return this.error.map(error => JSON.stringify(error)).join('\n');
     }
 
     public getErrorCode(statusCode: number): void
