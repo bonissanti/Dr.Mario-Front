@@ -10,106 +10,44 @@
       <title>dr-mario-remake</title>
   </head>
 
-  <header class="fixed top-0 left-0 right-0 w-full bg-gray-100 z-50 border-b border-gray-300">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
-          <!-- Logo -->
-          <div id="logo" class="text-xl sm:text-2xl font-bold text-gray-800 flex-shrink-0">
-              Dr. Mario
-          </div>
-
-          <!-- Desktop Navigation (hidden on mobile) -->
-          <nav class="hidden md:flex gap-6 text-gray-600 font-medium">
-              <a href="#" class="text-sm text-gray-600 hover:text-gray-900 transition">Home</a>
-              <a href="#" class="text-sm text-gray-600 hover:text-gray-900 transition">About</a>
-              <a href="#" class="text-sm text-gray-600 hover:text-gray-900 transition">How to play</a>
-          </nav>
-
-          <!-- Mobile Menu Button (visible only on mobile) -->
-          <button id="menu-toggle" class="md:hidden p-2 rounded hover:bg-gray-100">
-              <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-              </svg>
-          </button>
-      </div>
-
-      <!-- Mobile Navigation Menu (hidden by default) -->
-      <nav id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
-          <div class="px-4 sm:px-6 py-4 space-y-3">
-              <a href="#" class="block text-sm text-gray-600 hover:text-gray-900 py-2 transition">Home</a>
-              <a href="#" class="block text-sm text-gray-600 hover:text-gray-900 py-2 transition">About</a>
-              <a href="#" class="block text-sm text-gray-600 hover:text-gray-900 py-2 transition">How to play</a>
-          </div>
-      </nav>
-  </header>  <!-- page mainly configuration -->
-
   <body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen p-24">
-    <main class="flex flex-col items-center justify-center mt-4">
+      <header class="fixed top-0 left-0 right-0 w-full bg-gray-100 z-50 border-b border-gray-300">
+          <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+              <!-- Logo -->
+              <div id="logo" class="text-xl sm:text-2xl font-bold text-gray-800 flex-shrink-0">
+                  Dr. Mario
+              </div>
 
-    <!--  title and subtitle-->
-        <div class="flex flex-col items-center justify-center v-screen">
-            <h1 id="Title" class="text-3xl font-bold text-gray-900 mb-4">
-                A new way to play Dr. Mario!
-            </h1>
-            <p id="Subtitle" class="">
-                Experience online multiplayer mode, classic mode, power-ups, and much more!
-            </p>
-        </div>
-    <!-- end title and subtitle-->
+              <!-- Desktop Navigation (hidden on mobile) -->
+              <nav aria-label="desktop-nav" class="hidden md:flex gap-6 text-gray-600 font-medium">
+                  <a href="#" class="text-sm text-gray-600 hover:text-gray-900 transition">Home</a>
+                  <a href="#" class="text-sm text-gray-600 hover:text-gray-900 transition">About</a>
+                  <a href="#" class="text-sm text-gray-600 hover:text-gray-900 transition">How to play</a>
+              </nav>
 
-    <!--buttons and fav on github - TODO: add star on github button-->
-        <div class="flex-col items-center justify-center mt-10 space-x-4">
-            <button id="PlayButton" class="!bg-blue-500 hover:!bg-blue-600 text-gray-200 font-bold py-2 px-4 transition rounded">Play now!</button>
-            <button id="GitHubButton" class="!bg-gray-800 hover:!bg-gray-900 transition text-gray-200 font-bold py-2 px-4 rounded">Favorite me on GitHub</button>
-        </div>
-    <!-- end buttons and fav on github-->
+              <!-- Mobile Menu Button (visible only on mobile) -->
+              <button id="menu-toggle" class="md:hidden p-2 rounded hover:bg-gray-100">
+                  <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                  </svg>
+              </button>
+          </div>
 
-    <!--image of the game - TODO: add image or concept art of virus + blocks here-->
-    <!--TODO: doesn't exists w-350 in tailwind, it is converted to auto. Fix this -->
-        <div class="flex-col items-center justify-center mt-16">
-            <div id="Temporary-yellow-block" class="w-350 h-128 bg-yellow-200 rounded-4xl"></div>
-        </div>
-    <!--end image of the game-->
+          <!-- Mobile Navigation Menu (hidden by default) -->
+          <nav aria-label="mobile-nav" id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
+              <div class="px-4 sm:px-6 py-4 space-y-3">
+                  <a href="#" class="block text-sm text-gray-600 hover:text-gray-900 py-2 transition">Home</a>
+                  <a href="#" class="block text-sm text-gray-600 hover:text-gray-900 py-2 transition">About</a>
+                  <a href="#" class="block text-sm text-gray-600 hover:text-gray-900 py-2 transition">How to play</a>
+              </div>
+          </nav>
+      </header>  <!-- page mainly configuration -->
 
-    <!--  second block - about modes-->
-        <div class="flex flex-col items-center justify-center mt-24">
-            <div id="mini-virus-1" class="w-12 h-12 bg-red-200 rounded-full mb-8"></div>
-                <h2 id="second-block-headline" class="text-3xl font-bold text-gray-900 mb-4">
-                    Lorem ipsum dolor sit amet consectetur adipisicing.
-                </h2>
-            <div id="parent-mode-with-border" class="w-350 h-128 bg-red-200 rounded-4xl border-1 border-red-700 mt-4 p-8">
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div class="w-full h-32 bg-yellow-300 rounded-3xl"></div>
-                    <div class="w-full h-32 bg-blue-300 rounded-3xl"></div>
-                    <div class="w-full h-32 bg-green-300 rounded-3xl"></div>
-                    <div class="w-full h-32 bg-purple-300 rounded-3xl"></div>
-                    <div class="w-full h-32 bg-pink-300 rounded-3xl"></div>
-                </div>
-            </div>
-        </div>
-    <!-- end second block - about modes-->
+      <!--    This is where all page content will be loaded-->
+      <div id="app"></div>
 
-    <!-- third block - for educational purposes only TODO: fix w-size from div educational-purpose -->
-        <div class="flex flex-col items-center justify-center mt-24">
-            <div id="mini-virus-2" class="w-12 h-12 bg-purple-200 rounded-full mb-8"></div>
-            <h2 id="third-block-headline" class="text-3xl font-bold text-gray-900 mb-4">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </h2>
-            <div id="educational-purpose" class="w-350 h-128 bg-purple-200 rounded-4xl border-1 border-purple-700 mt-4 p-8">
-                <div class="grid grid-cols-3 sm:grid-cols-3 gap-4 items-start">
-                    <div class="col-span-1 h-96 bg-yellow-200 rounded-3xl"></div>
-                    <div class="col-span-2 h-96 bg-blue-200 rounded-3xl"></div>
-                </div>
-            </div>
-        </div>
-        <div class="flex-col items-center justify-center mt-10 space-x-4">
-            <button id="PlayButton2" class="!bg-blue-500 hover:!bg-blue-600 text-gray-200 font-bold py-2 px-4 rounded">Play now!</button>
-            <button id="GitHubButton2" class="!bg-gray-800 hover:!bg-gray-900 text-gray-200 font-bold py-2 px-4 rounded">Favorite me on GitHub</button>
-        </div>
-    <!-- end third block - for educational purposes only -->
-    </main>
-
-    <!--  footer-->
-    <footer class="w-full border-t border-gray-400 mt-16">
+      <!--  footer-->
+      <footer class="w-full border-t border-gray-400 mt-16">
         <div class="max-w-7xl mx-auto px-6 py-8 text-center justify-center flex flex-col">
 
             <!-- Top section with logo and nav -->
@@ -141,8 +79,9 @@
             </div>
         </div>
     </footer>
-    <!-- end footer-->
+      <!-- end footer-->
 
+      <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
 
