@@ -1,9 +1,5 @@
 export class ProxyData
 {
-    constructor(){
-
-    }
-
     //reactive one-way binding
     createProxy<T extends object>(target: T, onChange?: (property: string, value: any) => void): T
     {
