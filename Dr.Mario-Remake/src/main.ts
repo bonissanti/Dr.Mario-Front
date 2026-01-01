@@ -14,9 +14,25 @@ const routes: IRouter[] = [
     { path: '/error-404', component: '/pages/error/error404.html', name: 'Error 404' },
 ]
 
+globalThis.addEventListener('load', () => {
+    router.preloadRoutes(['/', '/about', '/contact', '/main-menu']);
+});
+
 routes.forEach(route => router.addRoutes(route));
 
 (globalThis.window as any).appRouter = router;
+
+document.addEventListener('mouseover', (event) => {
+    const target = event.target as HTMLElement;
+    const link = target.closest('a[data-link]');
+
+    if (link)
+    {
+        const href = link.getAttribute('href');
+        if (href)
+            router.preloadRoute(href);
+    }
+})
 
 document.addEventListener('click', (event) => {
     const target = event.target as HTMLElement;
