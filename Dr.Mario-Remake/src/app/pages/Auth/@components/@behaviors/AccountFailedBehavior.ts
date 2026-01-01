@@ -25,9 +25,9 @@ export class AccountFailedBehavior extends AUIBehavior
         modal.className = 'modal';
         modal.style = ComponentConfiguration.style.transition;
 
-        // Todo: redirect to homepage
-        // Todo: smooth modal - entry, exit is okay
-        // TODO: use sentry to send stack trace (from payload.stackTrace)
+        // TodU: redirect to homepage
+        // TodU: smooth modal - entry, exit is okay
+        // TODU: use sentry to send stack trace (from payload.stackTrace)
         modal.innerHTML = `
                 <div class="modal-box bg-gray-400">
                     <h3 class="text-lg font-bold">Ops! Occurred one problem when creating your account!</h3>
