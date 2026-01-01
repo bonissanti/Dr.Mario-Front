@@ -1,0 +1,64 @@
+<main class="flex flex-col items-center justify-center mt-4">
+
+    <!--  title and subtitle-->
+    <div class="flex flex-col items-center justify-center v-screen">
+        <h1 id="Title" class="text-3xl font-bold text-gray-900 mb-4">
+            A new way to play Dr. Mario!
+        </h1>
+        <p id="Subtitle" class="">
+            Experience online multiplayer mode, classic mode, power-ups, and much more!
+        </p>
+    </div>
+    <!-- end title and subtitle-->
+
+    <!--buttons and fav on github - TODU: add star on github button-->
+    <div class="flex-col items-center justify-center mt-10 space-x-4">
+        <a href="/main-menu" id="PlayButton" class="bg-blue-500 hover:bg-blue-600 text-gray-200! font-bold py-3 px-6 transition rounded-xl no-underline inline-block text-center" data-link>Play now!</a>
+        <a href="/dr.mario" id="GitHubButton" class="bg-gray-800! hover:bg-gray-900! transition text-gray-200! font-bold py-3.5 px-6 rounded-xl" data-link>Favorite me on GitHub</a>
+    </div>
+    <!-- end buttons and fav on github-->
+
+    <!--image of the game - TODU: add image or concept art of virus + blocks here-->
+    <!--TODU: doesn't exists w-350 in tailwind, it is converted to auto. Fix this -->
+    <div class="flex-col items-center justify-center mt-16">
+        <div id="Temporary-yellow-block" class="w-350 h-128 bg-yellow-200 rounded-4xl"></div>
+    </div>
+    <!--end image of the game-->
+
+    <!--  second block - about modes-->
+    <div class="flex flex-col items-center justify-center mt-24">
+        <div id="mini-virus-1" class="w-12 h-12 bg-red-200 rounded-full mb-8"></div>
+        <h2 id="second-block-headline" class="text-3xl font-bold text-gray-900 mb-4">
+            Lorem ipsum dolor sit amet consectetur adipisicing.
+        </h2>
+        <div id="parent-mode-with-border" class="w-350 h-128 bg-red-200 rounded-4xl border-1 border-red-700 mt-4 p-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="w-full h-32 bg-yellow-300 rounded-3xl"></div>
+                <div class="w-full h-32 bg-blue-300 rounded-3xl"></div>
+                <div class="w-full h-32 bg-green-300 rounded-3xl"></div>
+                <div class="w-full h-32 bg-purple-300 rounded-3xl"></div>
+                <div class="w-full h-32 bg-pink-300 rounded-3xl"></div>
+            </div>
+        </div>
+    </div>
+    <!-- end second block - about modes-->
+
+    <!-- third block - for educational purposes only TODU: fix w-size from div educational-purpose -->
+    <div class="flex flex-col items-center justify-center mt-24">
+        <div id="mini-virus-2" class="w-12 h-12 bg-purple-200 rounded-full mb-8"></div>
+        <h2 id="third-block-headline" class="text-3xl font-bold text-gray-900 mb-4">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        </h2>
+        <div id="educational-purpose" class="w-350 h-128 bg-purple-200 rounded-4xl border-1 border-purple-700 mt-4 p-8">
+            <div class="grid grid-cols-3 sm:grid-cols-3 gap-4 items-start">
+                <div class="col-span-1 h-96 bg-yellow-200 rounded-3xl"></div>
+                <div class="col-span-2 h-96 bg-blue-200 rounded-3xl"></div>
+            </div>
+        </div>
+    </div>
+    <div class="flex-col items-center justify-center mt-10 space-x-4">
+        <button id="PlayButton2" class="!bg-blue-500 hover:!bg-blue-600 text-gray-200 font-bold py-2 px-4 rounded">Play now!</button>
+        <button id="GitHubButton2" class="!bg-gray-800 hover:!bg-gray-900 text-gray-200 font-bold py-2 px-4 rounded">Favorite me on GitHub</button>
+    </div>
+    <!-- end third block - for educational purposes only -->
+</main>
