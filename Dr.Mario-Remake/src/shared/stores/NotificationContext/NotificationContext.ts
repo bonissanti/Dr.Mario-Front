@@ -2,9 +2,11 @@ import { ErrorCatalog } from './ErrorCatalog/ErrorCatalog.ts';
 
 export class NotificationContext
 {
-    constructor(public error: ErrorCatalog[])
+    public readonly error: ErrorCatalog[];
+
+    constructor(error: ErrorCatalog[])
     {
-        this.error = [];
+        this.error = error;
     }
 
     public addError(error: ErrorCatalog)
