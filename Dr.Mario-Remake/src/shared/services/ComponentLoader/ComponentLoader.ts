@@ -24,40 +24,47 @@ export class ComponentLoader implements IComponentLoader
             return;
         }
 
+        const html: string = await response.text();
         this.loadedComponent = componentPath;
-        await this.setNewComponent(componentPath, response);
-        this.hostElement.innerHTML = await response.text();
+        this.setNewComponent(componentPath, html);
+        this.hostElement.innerHTML = html;
     }
 
-    public async preload(componentPath: string): Promise<void>
+    public async preloadRoute(componentPath: string): Promise<void>
     {
-        if (this.checkIfIsValidReusableComponent(componentPath))
+        if (this.checkIfComponentIsCached(componentPath))
             return;
 
-        const response = await fetch(componentPath);
-        await this.setNewComponent(componentPath, response);
+        const response: Response = await fetch(componentPath);
+        const html: string = await response.text();
+        this.setNewComponent(componentPath, html);
     }
 
     private checkIfIsValidReusableComponent(componentPath: string): boolean
     {
         const component = this.cachedComponents.get(componentPath);
 
-        if (component)
-        {
-            const isExpired = Date.now() - component.cachedAt > this.cacheDuration;
+        if (!component)
+            return false;
 
-            if (isExpired)
-            {
-                this.cachedComponents.delete(componentPath);
-                return false;
-            }
-            this.loadedComponent = componentPath;
-            this.hostElement.innerHTML = component.html;
+        const isExpired = Date.now() - component.cachedAt > this.cacheDuration;
+
+        if (isExpired)
+        {
+            this.cachedComponents.delete(componentPath);
+            return false;
         }
+        this.loadedComponent = componentPath;
+        this.hostElement.innerHTML = component.html;
         return true;
     }
 
-    private async setNewComponent(componentPath: string, response: Response): Promise<void>
+    private checkIfComponentIsCached(componentPath: string): boolean
+    {
+        return this.cachedComponents.has(componentPath);
+    }
+
+    private setNewComponent(componentPath: string, response: string): void
     {
         if (this.cachedComponents.size === 10)
         {
@@ -66,6 +73,6 @@ export class ComponentLoader implements IComponentLoader
                 this.cachedComponents.delete(oldest);
         }
 
-        this.cachedComponents.set(componentPath, { html: await response.text(), cachedAt: Date.now() });
+        this.cachedComponents.set(componentPath, { html: response, cachedAt: Date.now() });
     }
 }
