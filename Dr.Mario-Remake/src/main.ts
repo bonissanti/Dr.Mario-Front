@@ -10,7 +10,7 @@ const routes: IRouter[] = [
     { path: '/', component: '/pages/home.html', name: 'Home' },
     { path: '/about', component: '/pages/about.html', name: 'About' },
     { path: '/contact', component: '/pages/howtoplay.html', name: 'How to Play' },
-    { path: '/main-menu', component: '/pages/main-menu/@components/@main-menu-component/mainMenu.html', name: 'Play Now' },
+    { path: '/main-menu', component: '/pages/components/main-menu/main-menu.html', name: 'Play Now' },
     { path: '/error-404', component: '/pages/error/error404.html', name: 'Error 404' },
 ]
 
