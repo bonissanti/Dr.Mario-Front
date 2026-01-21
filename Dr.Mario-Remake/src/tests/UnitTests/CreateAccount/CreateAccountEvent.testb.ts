@@ -1,8 +1,8 @@
-import { EventBus } from '../../../shared/components/EventBus/Concrete/EventBus.ts';
-import { AuthEventsEnum } from '../../../app/pages/Auth/@entities/AuthEventsEnum.ts';
-// import { CreateAccountExternalAPI } from '../../../app/pages/Auth/@service/CreateAccountExternalAPI.ts';
-import { CreateAccountUIHandler } from '../../../app/pages/Auth/@components/@uihandler/CreateAccountUIHandler.ts';
-// import type { CreateUserDTO } from '../../../app/pages/Auth/@entities/CreateUserDTO.ts';
+import { EventBus } from '../../../app/utils/EventBus/Concrete/EventBus.ts';
+import { AuthEventsEnum } from '../../../app-deprecated/pages/Auth/@entities/AuthEventsEnum.ts';
+// import { CreateAccountExternalAPI } from '../../../app-deprecated/pages/Auth/@service/CreateAccountExternalAPI.ts';
+import { CreateAccountUIHandler } from '../../../app-deprecated/pages/Auth/@components/@uihandler/CreateAccountUIHandler.ts';
+// import type { CreateUserDTO } from '../../../app-deprecated/pages/Auth/@entities/CreateUserDTO.ts';
 // import { faker } from '@faker-js/faker/locale/pt_BR';
 import {describe, beforeEach, it, expect, afterEach} from 'vitest';
 

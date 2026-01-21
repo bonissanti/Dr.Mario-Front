@@ -1,7 +1,7 @@
 import {describe, beforeEach, it, expect, afterEach, vi} from 'vitest';
-import type {IRouter} from "../../../shared/services/Router/IRouter.ts";
-import {RouterService} from "../../../shared/services/Router/RouterService.ts";
-import {MockComponentLoader} from "../../../shared/fixtures/MockComponentLoader.ts";
+import type {IRouter} from "../../../app/services/Router/IRouter.ts";
+import {RouterService} from "../../../app/services/Router/RouterService.ts";
+import {MockComponentLoader} from "../../../app/fixtures/MockComponentLoader.ts";
 
 describe('Router Test', () => {
     let mockRoutes: IRouter[] = []
