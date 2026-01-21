@@ -1,8 +1,8 @@
 import axios, {type AxiosInstance} from 'axios';
 import type{ IExternalAPI } from '../Interface/IExternalAPI.ts';
 import type { IRequestOptions } from '../Interface/IRequestOptions.ts';
-import { EventBus } from '../../../components/EventBus/Concrete/EventBus.ts';
-import { APIResponse } from '../../../components/APIResponse/APIResponse.ts';
+import { EventBus } from '../../../utils/EventBus/Concrete/EventBus.ts';
+import { APIResponse } from '../../../utils/APIResponse/APIResponse.ts';
 
 export abstract class ExternalAPI<TEventEnum> implements IExternalAPI
 {
@@ -13,6 +13,7 @@ export abstract class ExternalAPI<TEventEnum> implements IExternalAPI
     {
         this.client = axios.create({
             baseURL: baseUrl,
+            withCredentials: true,
             headers: {
                 'Content-Type': 'application/json'
             }

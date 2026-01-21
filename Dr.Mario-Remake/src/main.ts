@@ -1,6 +1,6 @@
-import type {IRouter} from "./shared/services/Router/IRouter.ts";
-import {RouterService} from "./shared/services/Router/RouterService.ts";
-import {ComponentLoader} from "./shared/services/ComponentLoader/ComponentLoader.ts";
+import type {IRouter} from "./app/services/Router/IRouter.ts";
+import {RouterService} from "./app/services/Router/RouterService.ts";
+import {ComponentLoader} from "./app/services/ComponentLoader/ComponentLoader.ts";
 import '@awesome.me/webawesome/dist/styles/webawesome.css';
 import {AuthService} from "./app/services/AuthService/AuthService.ts";
 import {Countries} from "./app/stores/Countries/Countries.ts";

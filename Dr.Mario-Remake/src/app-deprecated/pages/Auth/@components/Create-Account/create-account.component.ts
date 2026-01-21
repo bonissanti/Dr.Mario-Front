@@ -1,13 +1,13 @@
 import type { CreateUserDTO } from '../../@entities/CreateUserDTO.ts';
-import { ProxyData } from '../../../../../shared/components/ProxyData/ProxyData.ts';
-import { NotificationContext } from '../../../../../shared/stores/NotificationContext/NotificationContext.ts';
-import { ErrorCatalog } from '../../../../../shared/stores/NotificationContext/ErrorCatalog/ErrorCatalog.ts';
+import { ProxyData } from '../../../../../app/utils/ProxyData/ProxyData.ts';
+import { NotificationContext } from '../../../../../app/stores/NotificationContext/NotificationContext.ts';
+import { ErrorCatalog } from '../../../../../app/stores/NotificationContext/ErrorCatalog/ErrorCatalog.ts';
 import { CreateAccountUIHandler } from '../@uihandler/CreateAccountUIHandler.ts';
-import { EventBus } from '../../../../../shared/components/EventBus/Concrete/EventBus.ts';
+import { EventBus } from '../../../../../app/utils/EventBus/Concrete/EventBus.ts';
 import { AuthEventsEnum } from '../../@entities/AuthEventsEnum.ts';
 import { CreateAccountExternalAPI } from '../../@service/CreateAccountExternalAPI.ts';
 import { ComponentAnimationHelper, ComponentConfiguration } from '../@configuration/ComponentConfiguration.ts';
-import {Countries} from "../../../../../shared/stores/Countries/Countries.ts";
+import {Countries} from "../../../../../app/stores/Countries/Countries.ts";
 
 class CreateAccountComponent extends HTMLElement
 {

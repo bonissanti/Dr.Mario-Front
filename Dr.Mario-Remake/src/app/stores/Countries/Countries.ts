@@ -1,4 +1,5 @@
 import { countries, getEmojiFlag } from "countries-list";
+import type {CountryType} from "./CountryType.ts";
 
 
 
@@ -7,6 +8,9 @@ export class Countries
     private static instance: Countries;
     private static CountriesList: { name: any; code: string; continent: any; emoji: any }[] = [];
 
+    constructor (){
+        console.log('Countries instance created');
+    }
 
     public static getInstance(): Countries
     {

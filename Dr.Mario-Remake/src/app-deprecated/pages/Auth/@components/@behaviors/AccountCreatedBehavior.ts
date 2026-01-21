@@ -1,4 +1,4 @@
-import { AUIBehavior } from '../../../../../shared/components/UIBehavior/Abstract/AUIBehavior.ts';
+import { AUIBehavior } from '../../../../../app/utils/UIBehavior/Abstract/AUIBehavior.ts';
 import { AuthEventsEnum } from '../../@entities/AuthEventsEnum.ts';
 
 export class AccountCreatedBehavior extends AUIBehavior
