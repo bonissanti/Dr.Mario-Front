@@ -6,7 +6,7 @@ import type {CountryType} from "./CountryType.ts";
 export class Countries
 {
     private static instance: Countries;
-    private static CountriesList: { name: any; code: string; continent: any; emoji: any }[] = [];
+    public static CountriesList: CountryType[] | null = null;
 
     constructor (){
         console.log('Countries instance created');
@@ -20,14 +20,15 @@ export class Countries
         return Countries.instance;
     }
 
-    public get CountryNames(): { name: any; code: string; continent: any; emoji: any }[]
+    public get CountryNames(): CountryType[]
     {
-        Countries.CountriesList ??= this.mapCountries();
+        if (Countries.CountriesList == null)
+            Countries.CountriesList = this.mapCountries();
 
         return Countries.CountriesList;
     }
 
-    private mapCountries(): { name: any; code: string; continent: any; emoji: any }[]
+    private mapCountries(): CountryType[]
     {
         const countryCodes = Object.keys(countries) as Array<keyof typeof countries>
 
