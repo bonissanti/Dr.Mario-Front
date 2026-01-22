@@ -1,6 +1,6 @@
 export interface IRouter {
    path: string;
    component: string;
-   name: string;
+   controller?: () => Promise<any>;
    guardRoute: boolean;
 }

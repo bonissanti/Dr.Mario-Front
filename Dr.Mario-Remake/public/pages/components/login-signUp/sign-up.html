@@ -1,11 +1,13 @@
-<div class="mx-auto max-w-6xl m-48">
+<div id="sign-up" class="mx-auto max-w-6xl m-40">
     <h1 id="Title" class="text-3xl text-center font-bold text-gray-900">
         Larilou
     </h1>
 
     <div class="flex justify-center v-screen divide-x divide-gray-400 mt-8">
         <form class="input-validation-required">
-            <wa-input class="name" label="Name" placeholder="Larilou" required></wa-input>
+            <wa-input class="firstName" label="First Name" placeholder="Larilou" required></wa-input>
+            <br />
+            <wa-input class="lastName" label="Last Name" placeholder="Larilou do larilei" required></wa-input>
             <br />
             <wa-input class="username" label="Username" placeholder="_larilou" required></wa-input>
             <br />
@@ -14,6 +16,8 @@
             <wa-input class="password" label="Password" type="password" required></wa-input>
             <br />
             <wa-input class="confirm-password" label="Confirm Password" type="password" required></wa-input>
+            <br />
+            <wa-input class="birth-date" label="Birth date" type="date" required></wa-input>
             <br />
             <wa-select name="country" label="Your country" class="text-left" with-clear required>
 
@@ -25,27 +29,4 @@
             <wa-button type="reset" variant="neutral">Reset</wa-button>
         </form>
     </div>
-
-    <script type="module">
-        import {Countries} from "../../../../src/app/stores/Countries/Countries.ts";
-
-        document.addEventListener('DOMContentLoaded', () => {
-            var countriesInstance = Countries.getInstance();
-
-            const countriesList = countriesInstance.CountryNames;
-            const countrySelect = document.querySelector('wa-select[class="country"]');
-            console.log(countrySelect);
-            console.log(countriesList);
-
-            countrySelect.innerHTML = '';
-
-            for (const country of countriesList) {
-                const option = document.createElement('wa-option');
-                option.value = country.code;
-                option.textContent = `${country.emoji} ${country.name}`;
-                countrySelect.appendChild(option);
-            }
-        });
-    </script>
 </div>
-

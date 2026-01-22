@@ -42,6 +42,12 @@ h1 {
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+#app.loaded {
+  opacity: 1;
 }
 
 .logo {
@@ -95,6 +101,10 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+:not(:defined) {
+  visibility: hidden;
 }
 
 a[data-link] {
