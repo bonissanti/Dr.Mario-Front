@@ -30,12 +30,20 @@ export class RouterService
                return await this.componentLoader.load('/error-404');
 
             else if (route?.guardRoute === false)
-                return await this.componentLoader.load(route.component);
+                await this.componentLoader.load(route.component);
 
             else if (route?.guardRoute === true && await this.authService.checkAuthentication())
-                return await this.componentLoader.load(route.component);
+                await this.componentLoader.load(route.component);
 
-            return await this.componentLoader.load('/auth/login');
+            else
+                await this.componentLoader.load('/auth/login');
+
+            if (route.controller)
+            {
+                const ControllerClass = await route.controller();
+                const controller = new ControllerClass.default(this.authService);
+                controller.init();
+            }
         }
         catch (error)
         {
