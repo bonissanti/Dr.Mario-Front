@@ -1,18 +1,20 @@
-import type {IAuthService} from "../../services/AuthService/IAuthService.ts";
 import type {CreateUserDTO} from "../../entities/CreateUserDTO.ts";
 import {ProxyData} from "../../utils/ProxyData/ProxyData.ts";
+import {CreateAccountExternalAPI} from "../../../app-deprecated/pages/Auth/@service/CreateAccountExternalAPI.ts";
+import {EventBus} from "../../utils/EventBus/Concrete/EventBus.ts";
+import type {AuthEventsEnum} from "../../../app-deprecated/pages/Auth/@entities/AuthEventsEnum.ts";
 
 export default class SignUpService
 {
-    private readonly container: HTMLElement;
     private createUserDTO: CreateUserDTO = {}
     private debouncerTimer: number | null = null;
     private readonly proxyData: ProxyData = new ProxyData();
-    private readonly authService: IAuthService;
+    private readonly apiService: CreateAccountExternalAPI;
 
-    public constructor(private readonly authService: IAuthService)
+    public constructor()
     {
-        this.authService = authService;
+        const eventBus = new EventBus<AuthEventsEnum>();
+        this.apiService = new CreateAccountExternalAPI(eventBus);
     }
 
     public init(): void
@@ -27,7 +29,7 @@ export default class SignUpService
                 clearTimeout(this.debouncerTimer);
 
             this.debouncerTimer = globalThis.setTimeout(() => {
-                this.validateInputs(property, value);
+                this.validateBasicInputs(property, value);
             }, 500);
         });
 
@@ -38,6 +40,7 @@ export default class SignUpService
         const passwordInput = document.querySelector('wa-input.password') as HTMLInputElement;
         const confirmPasswordInput = document.querySelector('wa-input.confirm-password') as HTMLInputElement;
         const birthDateInput = document.querySelector('wa-input.birth-date') as HTMLInputElement;
+        const form = document.querySelector('form') as HTMLFormElement;
 
         nameInput.addEventListener('input', (e) => {
             this.createUserDTO.firstName = (e.target as HTMLInputElement).value;
@@ -66,9 +69,19 @@ export default class SignUpService
         birthDateInput.addEventListener('input', (e) => {
             this.createUserDTO.birthDate = new Date((e.target as HTMLInputElement).value);
         })
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            await this.submitForm();
+        })
     }
 
-    private validateInputs(property: string, value: string): void
+    private async submitForm(): Promise<void>
+    {
+        await this.apiService.CreateAccount(this.createUserDTO);
+    }
+
+    private validateBasicInputs(property: string, value: string): void
     {
         const className = property.replaceAll(/([A-Z])/g, '-$1').toLowerCase();
         const input = document.querySelector(`wa-input.${className}`) as HTMLInputElement;
@@ -90,7 +103,7 @@ export default class SignUpService
         }
 
         if (property === 'username') {
-            if (value.length < 3 || value.length > 10) {
+            if (value.length < 3 || value.length > 15) {
                 this.setCustomValidity(input, 'Username must be between 3 and 10 characters long.');
                 return;
             }
@@ -104,9 +117,10 @@ export default class SignUpService
             }
             this.setCustomValidity(input, 'Invalid email.');
         }
+        this.validateSensitiveInputs(property, value, input);
     }
 
-    private validatePasswords(property: string, value: string, input: HTMLInputElement): void
+    private validateSensitiveInputs(property: string, value: string, input: HTMLInputElement): void
     {
         if (property === 'birthDate') {
             if (this.validateBirthDate(value)) {

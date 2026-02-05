@@ -41,7 +41,7 @@ export class RouterService
             if (route.controller)
             {
                 const ControllerClass = await route.controller();
-                const controller = new ControllerClass.default(this.authService);
+                const controller = new ControllerClass.default();
                 controller.init();
             }
         }
