@@ -4,12 +4,6 @@ import { AuthEventsEnum } from '../../../../app/pages/Auth/@entities/AuthEventsE
 export abstract class AUIBehavior implements IUIBehavior
 {
     protected next?: IUIBehavior;
-    protected shadowRoot: ShadowRoot;
-
-    constructor(shadowRoot: ShadowRoot)
-    {
-        this.shadowRoot = shadowRoot;
-    }
 
     public setNext(behavior: IUIBehavior): IUIBehavior
     {

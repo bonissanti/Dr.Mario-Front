@@ -33,10 +33,10 @@ export class CreateAccountUIHandler
             this.subscription.unsubscribe();
     }
 
-    private buildBehaviorChain(shadowRoot: ShadowRoot): IUIBehavior
+    private buildBehaviorChain(): IUIBehavior
     {
-        const accountCreatedBehavior = new AccountCreatedBehavior(shadowRoot);
-        const accountFailedBehavior = new AccountFailedBehavior(shadowRoot);
+        const accountCreatedBehavior = new AccountCreatedBehavior();
+        const accountFailedBehavior = new AccountFailedBehavior();
 
         return accountCreatedBehavior.setNext(accountFailedBehavior);
     }
