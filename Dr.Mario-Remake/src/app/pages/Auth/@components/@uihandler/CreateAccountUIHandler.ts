@@ -10,12 +10,9 @@ export class CreateAccountUIHandler
     private subscription!: ISubscription;
     private behaviorChain!: IUIBehavior;
 
-    constructor(eventBus: EventBus<AuthEventsEnum>, shadowRoot: ShadowRoot| null)
+    constructor(eventBus: EventBus<AuthEventsEnum>)
     {
-        if (!shadowRoot)
-            return;
-
-        this.behaviorChain = this.buildBehaviorChain(shadowRoot);
+        this.behaviorChain = this.buildBehaviorChain();
 
         this.subscription = eventBus.subscribe((event: AuthEventsEnum, payload: any) => {
             this.behaviorChain.handle(event, payload);
@@ -33,10 +30,10 @@ export class CreateAccountUIHandler
             this.subscription.unsubscribe();
     }
 
-    private buildBehaviorChain(shadowRoot: ShadowRoot): IUIBehavior
+    private buildBehaviorChain(): IUIBehavior
     {
-        const accountCreatedBehavior = new AccountCreatedBehavior(shadowRoot);
-        const accountFailedBehavior = new AccountFailedBehavior(shadowRoot);
+        const accountCreatedBehavior = new AccountCreatedBehavior();
+        const accountFailedBehavior = new AccountFailedBehavior();
 
         return accountCreatedBehavior.setNext(accountFailedBehavior);
     }
