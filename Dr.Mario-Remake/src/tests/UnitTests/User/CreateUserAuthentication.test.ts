@@ -18,10 +18,11 @@
 //
 //     })
 // })
-import { NotificationContext } from '../../../shared/stores/NotificationContext/NotificationContext.ts';
-import { CreateUserDTO } from '../../../app/pages/Auth/@entities/CreateUserDTO.ts';
-import { ProxyData } from '../../../shared/components/ProxyData/ProxyData.ts';
-import { ErrorCatalog } from '../../../shared/stores/NotificationContext/ErrorCatalog/ErrorCatalog.ts';
+import { NotificationContext } from '../../../app/stores/NotificationContext/NotificationContext.ts';
+import type { CreateUserDTO } from '../../../app-deprecated/pages/Auth/@entities/CreateUserDTO.ts';
+import { ProxyData } from '../../../app/utils/ProxyData/ProxyData.ts';
+import { ErrorCatalog } from '../../../app/stores/NotificationContext/ErrorCatalog/ErrorCatalog.ts';
+import {describe, beforeEach, it, expect} from 'vitest';
 
 describe('Create User Authentication Form Test', () =>{
     let proxyData: ProxyData;
