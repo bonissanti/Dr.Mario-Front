@@ -34,6 +34,7 @@ export class SignUpIUBehaviorHandler
             this.subscription.unsubscribe();
     }
 
+    //TODU: separate this into a dependency injection container
     private buildBehaviorChain(): IUIBehavior
     {
         const accountCreatedBehavior = new AccountCreatedBehavior();
