@@ -1,0 +1,69 @@
+@import "../../../node_modules/tailwindcss" source(none);
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@source "./src/*.{html,js}";
+@plugin "daisyui";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer components{
+    .bg-pattern {
+        background-color: #4c1d95;
+        background-image:
+                linear-gradient(45deg, #000 25%, transparent 25%),
+                linear-gradient(-45deg, #000 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, #000 75%),
+                linear-gradient(-45deg, transparent 75%, #000 75%);
+        background-size: 30px 30px;
+        background-position: 0 0, 0 15px, 15px -15px, -15px 0;
+    }
+
+    .custom-blur {
+        backdrop-filter: blur(2px);
+        -webkit-backdrop-filter: blur(2px);
+    }
+
+    .press-start-2p-regular {
+        --font-weight: 400;
+        font-family: "Press Start 2P", monospace;
+        font-weight: var(--font-weight);
+        font-style: normal;
+    }
+
+    .nes-menu {
+        --bg-color: white;
+        --border-color: black;
+        position: relative;
+        padding: 16px;
+        background-color: var(--bg-color);
+        color: var(--border-color);
+        font-family: 'Press Start 2P', monospace;
+        border: 3px solid var(--border-color);
+        box-shadow:
+                -10px 0 var(--border-color),
+                10px 0 var(--border-color),
+                0 -10px var(--border-color),
+                0 10px var(--border-color);
+    }
+
+    /*.nes-menu::before,*/
+    /*.nes-menu::after {*/
+    /*    content: "";*/
+    /*    position: absolute;*/
+    /*    width: 8px;*/
+    /*    height: 8px;*/
+    /*    background: white;*/
+    /*}*/
+
+    /* .nes-container::before {
+      top: -2px;
+      left: -2px;
+    }
+
+    .nes-container::after {
+      bottom: -2px;
+      right: -2px;
+    } */
+}
