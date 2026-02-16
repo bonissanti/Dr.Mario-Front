@@ -10,12 +10,9 @@ export class CreateAccountUIHandler
     private subscription!: ISubscription;
     private behaviorChain!: IUIBehavior;
 
-    constructor(eventBus: EventBus<AuthEventsEnum>, shadowRoot: ShadowRoot| null)
+    constructor(eventBus: EventBus<AuthEventsEnum>)
     {
-        if (!shadowRoot)
-            return;
-
-        this.behaviorChain = this.buildBehaviorChain(shadowRoot);
+        this.behaviorChain = this.buildBehaviorChain();
 
         this.subscription = eventBus.subscribe((event: AuthEventsEnum, payload: any) => {
             this.behaviorChain.handle(event, payload);
