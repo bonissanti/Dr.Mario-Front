@@ -1,6 +1,6 @@
-import type {IComponentLoader} from "../services/ComponentLoader/IComponentLoader.ts";
+import type {AComponentLoader} from "../services/ComponentLoader/AComponentLoader.ts";
 
-export class MockComponentLoader implements IComponentLoader
+export class MockComponentLoader implements AComponentLoader
 {
     public loadedComponent: string | null = null;
     private readonly cachedComponents: Map<string, { html: string, cachedAt: number }> = new Map();

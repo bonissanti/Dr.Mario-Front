@@ -1,14 +1,15 @@
 import type {IRouter} from "./IRouter.ts";
-import type {IComponentLoader} from "../ComponentLoader/IComponentLoader.ts";
-import type {IAuthService} from "../AuthService/IAuthService.ts";
+import {AComponentLoader} from "../ComponentLoader/AComponentLoader.ts";
+import {AAuthService} from "../AuthService/AAuthService.ts";
 
 export class RouterService
 {
     public readonly routes: IRouter[] = [];
-    private readonly componentLoader: IComponentLoader;
-    private readonly authService: IAuthService;
+    private readonly componentLoader: AComponentLoader;
+    private readonly authService: AAuthService;
+    static dependencies = [AComponentLoader, AAuthService];
 
-    constructor(componentLoader: IComponentLoader, authService: IAuthService)
+    constructor(componentLoader: AComponentLoader, authService: AAuthService)
     {
         this.componentLoader = componentLoader;
         this.authService = authService;

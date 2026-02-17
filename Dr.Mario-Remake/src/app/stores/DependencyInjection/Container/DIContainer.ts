@@ -1,56 +1,115 @@
+type Scope = 'singleton' | 'scoped' | 'transient';
+type AbstractClass<T> = abstract new (...args: any[]) => T;
+type Class<T> = new (...args: any[]) => T;
+type Token<T> = Class<T> | AbstractClass<T>;
+
+export interface Instance
+{
+    factory: () => any
+    scope: Scope
+    instance?: any
+}
+
+export interface ContainerDict
+{
+    [key: string]: Instance
+}
+
 export class DIContainer
 {
-    public services: Map<any, any> = new Map();
-    public scopedServices: Map<any, any> = new Map();
+    public containerDict: ContainerDict = {};
+    private readonly scopedInstances: Map<string, any> = new Map();
 
-    public register(serviceName: string, serviceDefinition: any, scope: string, dependencies: any[] = [])
+    public convertToString<T>(target: Token<T>)
     {
-        this.services.set(serviceName, {
-            serviceDefinition,
-            scope,
-            dependencies,
-            instance: null
-        });
+        return target.name;
     }
 
-    public resolve(serviceName: any, context?: any)
+    public register<T>(target: Token<T>, instance: Instance)
     {
-        const service = this.services.get(serviceName);
+        const key = this.convertToString(target);
 
-        if (service.scope === 'scoped')
-        {
-            if (!this.scopedServices.has(context))
-                this.scopedServices.set(context, new Map());
+        if (this.containerDict[key])
+            throw new Error(`A registration for ${key} already exists`);
 
-            const contextServices = this.scopedServices.get(context);
+        this.containerDict[key] = instance;
+    }
 
-            if (!contextServices.has(serviceName))
-            {
-                const resolvedDependencies = service.dependencies.map((dependency: any) => this.resolve(dependency, context));
-                contextServices.set(serviceName, new service.serviceDefinition(...resolvedDependencies));
-            }
-            return contextServices.get(serviceName);
+    public addSingleton<T>(target: Token<T>, implementation?: Class<T>)
+    {
+        const impl = implementation ?? target as Class<T>;
+        const dependencies = (impl as any).dependencies ?? [];
+
+        this.register(target, {
+            factory: () => {
+                const resolvedDeps = dependencies.map((dep: Token<any>) => this.resolve(dep));
+                return new impl(...resolvedDeps)
+            },
+            scope: 'singleton',
+        })
+    }
+
+    public addScoped<T>(target: Token<T>, implementation?: Class<T>)
+    {
+        const impl = implementation ?? target as Class<T>;
+        const dependencies = (impl as any).dependencies ?? [];
+
+        this.register(target, {
+            factory: () => {
+                const resolvedDeps = dependencies.map((dep: Token<any>) => this.resolve(dep));
+                return new impl(...resolvedDeps)
+            },
+            scope: 'scoped',
+        })
+    }
+
+    public addTransient<T>(target: Token<T>, implementation?: Class<T>)
+    {
+        const impl = implementation ?? target as Class<T>;
+        const dependencies = (impl as any).dependencies ?? [];
+
+        this.register(target, {
+            factory: () => {
+                const resolvedDeps = dependencies.map((dep: Token<any>) => this.resolve(dep));
+                return new impl(...resolvedDeps)
+            },
+            scope: 'transient',
+        })
+    }
+
+    public resolve<T>(target: Token<T>): T
+    {
+        const key = this.convertToString(target);
+        const registration = this.containerDict[key];
+
+        if (!registration) {
+            throw new Error(`No registration found for token ${key}`);
         }
 
-        if (service.scope === 'transient')
+        switch (registration.scope)
         {
-            const resolvedDependencies = service.dependencies.map((dependency: any) => this.resolve(dependency, context));
-            return new service.serviceDefinition(...resolvedDependencies);
-        }
+            case 'singleton':
+                if (!registration.instance) {
+                    registration.instance = registration.factory();
+                }
+                return registration.instance as T;
 
-        if (service.scope === 'singleton')
-        {
-            if (service.instance === null)
-            {
-                const resolvedDependencies = service.dependencies.map((dependency: any) => this.resolve(dependency, context));
-                service.instance = new service.serviceDefinition(...resolvedDependencies);
-            }
-            return service.instance;
+            case 'scoped':
+                if (!this.scopedInstances.has(key)) {
+                    this.scopedInstances.set(key, registration.factory());
+                }
+                return this.scopedInstances.get(key) as T;
+
+            case 'transient':
+                return registration.factory();
+
+            default:
+                throw new Error(`Unknown scope ${registration.scope}`);
         }
     }
 
-    public clearContext(context: any)
+    public clear()
     {
-        this.scopedServices.delete(context);
+        this.scopedInstances.clear();
     }
 }
