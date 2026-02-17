@@ -1,14 +1,15 @@
-import type {IComponentLoader} from "./IComponentLoader.ts";
+import {AComponentLoader} from "./AComponentLoader.ts";
 
-export class ComponentLoader implements IComponentLoader
+export class ComponentLoader extends AComponentLoader
 {
     private readonly hostElement: HTMLElement;
     public loadedComponent: string | null = null;
     private readonly cachedComponents: Map<string, { html: string, cachedAt: number }> = new Map();
     private readonly cacheDuration: number = 1000 * 60 * 5; // 5 minutes
 
-    constructor(htmlElement: HTMLElement) {
-        this.hostElement = htmlElement;
+    constructor() {
+        super();
+        this.hostElement = document.getElementById('app')!;
     }
 
     public async load(componentPath: string): Promise<void>

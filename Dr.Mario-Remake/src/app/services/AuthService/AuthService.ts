@@ -1,7 +1,7 @@
 import axios, {type AxiosInstance} from 'axios';
-import type {IAuthService} from "./IAuthService.ts";
+import {AAuthService} from "./AAuthService.ts";
 
-export class AuthService implements IAuthService
+export class AuthService extends AAuthService
 {
     private readonly authUrl: string = 'http://localhost:3000/api/auth/me'; //TODU: future env
     protected readonly client: AxiosInstance;
@@ -11,6 +11,7 @@ export class AuthService implements IAuthService
 
     public constructor()
     {
+        super()
         this.client = axios.create({
             baseURL: this.authUrl,
             withCredentials: true,

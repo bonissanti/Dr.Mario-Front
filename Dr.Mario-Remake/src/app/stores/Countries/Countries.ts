@@ -1,8 +1,6 @@
 import { countries, getEmojiFlag } from "countries-list";
 import type {CountryType} from "./CountryType.ts";
 
-
-
 export class Countries
 {
     private static instance: Countries;

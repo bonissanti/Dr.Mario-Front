@@ -5,8 +5,7 @@ import '@awesome.me/webawesome/dist/styles/webawesome.css';
 import {AuthService} from "./app/services/AuthService/AuthService.ts";
 import {Countries} from "./app/stores/Countries/Countries.ts";
 
-const element: HTMLElement | null = document.getElementById('app');
-const loader = new ComponentLoader(element!);
+const loader = new ComponentLoader();
 const authService = new AuthService();
 const router = new RouterService(loader, authService);
 const countries: Countries = Countries.getInstance();
