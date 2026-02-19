@@ -6,7 +6,7 @@ import type {CreateUserDTO} from "../../../domain/CreateUserDTO.ts";
 
 export class CreateAccountExternalAPI extends ExternalAPI<AuthEventsEnum>
 {
-    constructor ( authEventBus: EventBus<AuthEventsEnum>)
+    constructor (authEventBus: EventBus<AuthEventsEnum>)
     {
         super('http:localhost:3002', authEventBus);
     }
