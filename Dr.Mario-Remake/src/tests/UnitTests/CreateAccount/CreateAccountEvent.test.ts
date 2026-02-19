@@ -1,8 +1,8 @@
 import { EventBus } from '../../../shared/stores/EventBus/Concrete/EventBus.ts';
-import { AuthEventsEnum } from '../../../app/pages/Auth/@entities/AuthEventsEnum.ts';
+import { AuthEventsEnum } from '../../../app/pages/Auth/@domain/AuthEventsEnum.ts';
 import { CreateAccountExternalAPI } from '../../../app/pages/Auth/@service/CreateAccountExternalAPI.ts';
 import { CreateAccountUIHandler } from '../../../app/pages/Auth/@components/@uihandler/CreateAccountUIHandler.ts';
-import { CreateUserDTO } from '../../../app/pages/Auth/@entities/CreateUserDTO.ts';
+import { CreateUserDTO } from '../../../app/pages/Auth/@domain/CreateUserDTO.ts';
 import { faker } from '@faker-js/faker/locale/pt_BR';
 
 jest.mock('../../../app/pages/Auth/@service/CreateAccountExternalAPI.ts');

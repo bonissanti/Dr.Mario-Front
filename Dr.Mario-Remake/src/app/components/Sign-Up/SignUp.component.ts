@@ -1,8 +1,8 @@
-import type {CreateUserDTO} from "../../entities/CreateUserDTO.ts";
+import type {CreateUserDTO} from "../../domain/CreateUserDTO.ts";
 import {ProxyData} from "../../utils/ProxyData/ProxyData.ts";
-import {CreateAccountExternalAPI} from "../../../app-deprecated/pages/Auth/@service/CreateAccountExternalAPI.ts";
 import {EventBus} from "../../utils/EventBus/Concrete/EventBus.ts";
-import type {AuthEventsEnum} from "../../../app-deprecated/pages/Auth/@entities/AuthEventsEnum.ts";
+import {MockCreateAccountExternalAPI} from "../../utils/Mocks/MockCreateAccountExternalAPI.ts";
+import type {AuthEventsEnum} from "../../domain/enum/AuthEventsEnum.ts";
 
 export default class SignUpService
 {
