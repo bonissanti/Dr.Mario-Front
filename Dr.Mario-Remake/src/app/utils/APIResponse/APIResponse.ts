@@ -1,14 +1,15 @@
 export class APIResponse
-
 {
     public readonly statusCode: number;
-    public readonly data: any;
     public readonly success: boolean;
+    public readonly uuid: any;
+    public readonly data: any;
 
-    constructor(statusCode: number, data: any, success: boolean)
+    constructor(statusCode: number, success: boolean, uuid: any, data: any)
     {
         this.statusCode = statusCode;
-        this.data = data;
         this.success = success;
+        this.data = data;
+        this.uuid = uuid;
     }
 }

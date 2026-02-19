@@ -1,20 +1,26 @@
-import type {CreateUserDTO} from "../../entities/CreateUserDTO.ts";
+import type {CreateUserDTO} from "../../domain/CreateUserDTO.ts";
 import {ProxyData} from "../../utils/ProxyData/ProxyData.ts";
-import {CreateAccountExternalAPI} from "../../../app-deprecated/pages/Auth/@service/CreateAccountExternalAPI.ts";
 import {EventBus} from "../../utils/EventBus/Concrete/EventBus.ts";
-import type {AuthEventsEnum} from "../../../app-deprecated/pages/Auth/@entities/AuthEventsEnum.ts";
+import {MockCreateAccountExternalAPI} from "../../utils/Mocks/MockCreateAccountExternalAPI.ts";
+import type {AuthEventsEnum} from "../../domain/enum/AuthEventsEnum.ts";
+import {SignUpIUBehaviorHandler} from "./SignUp.IUBehavior-handler.ts";
+import {container} from "../../../main.ts";
 
-export default class SignUpService
+export default class SignUpComponent
 {
     private createUserDTO: CreateUserDTO = {}
+    private validityTimer: number | null = null;
     private debouncerTimer: number | null = null;
-    private readonly proxyData: ProxyData = new ProxyData();
-    private readonly apiService: CreateAccountExternalAPI;
+    private readonly proxyData: ProxyData;
+    private readonly mockApiService: MockCreateAccountExternalAPI;
+    private readonly behaviorHandler: SignUpIUBehaviorHandler;
 
     public constructor()
     {
         const eventBus = new EventBus<AuthEventsEnum>();
-        this.apiService = new CreateAccountExternalAPI(eventBus);
+        this.proxyData = container.resolve(ProxyData);
+        this.mockApiService = new MockCreateAccountExternalAPI(eventBus);
+        this.behaviorHandler = new SignUpIUBehaviorHandler(eventBus);
     }
 
     public init(): void
@@ -78,7 +84,7 @@ export default class SignUpService
 
     private async submitForm(): Promise<void>
     {
-        await this.apiService.CreateAccount(this.createUserDTO);
+        await this.mockApiService.CreateAccount(this.createUserDTO);
     }
 
     private validateBasicInputs(property: string, value: string): void
@@ -184,9 +190,12 @@ export default class SignUpService
 
     private cleanCustomValidity(input : HTMLInputElement)
     {
-        globalThis.setTimeout(() => {
-            input.setCustomValidity('');
+        if (this.validityTimer)
+            clearTimeout(this.validityTimer);
 
+       this.validityTimer = globalThis.setTimeout(() => {
+            input.setCustomValidity('');
+            this.validityTimer = null;
         }, 300);
     }
 }

@@ -1,12 +1,12 @@
-import { EventBus } from '../../../../app/utils/EventBus/Concrete/EventBus.ts';
-import { AuthEventsEnum } from '../@entities/AuthEventsEnum.ts';
-import { ExternalAPI } from '../../../../app/services/ExternalAPI/Concrete/ExternalAPI.ts';
-import type { CreateUserDTO } from '../@entities/CreateUserDTO.ts';
-import { APIResponse } from '../../../../app/utils/APIResponse/APIResponse.ts';
+import { EventBus } from '../../../utils/EventBus/Concrete/EventBus.ts';
+import { AuthEventsEnum } from '../../../domain/enum/AuthEventsEnum.ts';
+import { ExternalAPI } from './ExternalAPI.ts';
+import { APIResponse } from '../../../utils/APIResponse/APIResponse.ts';
+import type {CreateUserDTO} from "../../../domain/CreateUserDTO.ts";
 
 export class CreateAccountExternalAPI extends ExternalAPI<AuthEventsEnum>
 {
-    constructor ( authEventBus: EventBus<AuthEventsEnum>)
+    constructor (authEventBus: EventBus<AuthEventsEnum>)
     {
         super('http:localhost:3002', authEventBus);
     }

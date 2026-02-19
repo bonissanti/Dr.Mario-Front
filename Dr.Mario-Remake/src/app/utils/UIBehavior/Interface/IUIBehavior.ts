@@ -1,4 +1,4 @@
-import { AuthEventsEnum } from '../../../../app-deprecated/pages/Auth/@entities/AuthEventsEnum.ts';
+import { AuthEventsEnum } from '../../../domain/enum/AuthEventsEnum.ts';
 
 export interface IUIBehavior
 {
