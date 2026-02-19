@@ -1,12 +1,9 @@
 import type {ISubscription} from "../../utils/EventBus/Interface/ISubscription.ts";
 import type {IUIBehavior} from "../../utils/UIBehavior/Interface/IUIBehavior.ts";
 import type {EventBus} from "../../utils/EventBus/Concrete/EventBus.ts";
-import {
-    AccountCreatedBehavior
-} from "../../../app-deprecated/pages/Auth/@components/@behaviors/AccountCreatedBehavior.ts";
-import {
-    AccountFailedBehavior
-} from "../../../app-deprecated/pages/Auth/@components/@behaviors/AccountFailedBehavior.ts";
+import type {AuthEventsEnum} from "../../domain/enum/AuthEventsEnum.ts";
+import {SignUpBehaviorFailed} from "./SignUp.behavior-failed.ts";
+import {SignUpBehaviorSuccess} from "./SignUp.behavior-success.ts";
 
 export class SignUpIUBehaviorHandler
 {
@@ -33,12 +30,12 @@ export class SignUpIUBehaviorHandler
             this.subscription.unsubscribe();
     }
 
-    //TODU: separate this into a dependency injection container
     private buildBehaviorChain(): IUIBehavior
     {
-        const accountCreatedBehavior = new AccountCreatedBehavior();
-        const accountFailedBehavior = new AccountFailedBehavior();
+        const signUpBehaviorSuccess = new SignUpBehaviorSuccess();
+        const signUpBehaviorFailed = new SignUpBehaviorFailed();
 
-        return accountCreatedBehavior.setNext(accountFailedBehavior);
+        signUpBehaviorSuccess.setNext(signUpBehaviorFailed);
+        return signUpBehaviorSuccess;
     }
 }
