@@ -15,8 +15,8 @@ export class SignUpBehaviorFailed extends AUIBehavior
         if (form)
         {
             form.classList.add('blur-sm', 'pointer-events-none');
+            this.showFailedModal(payload);
             console.error(payload);
-            this.showFailedModal();
         }
     }
 

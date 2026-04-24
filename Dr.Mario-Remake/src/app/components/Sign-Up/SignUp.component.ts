@@ -3,7 +3,6 @@ import {ProxyData} from "../../utils/ProxyData/ProxyData.ts";
 import {EventBus} from "../../utils/EventBus/Concrete/EventBus.ts";
 import {MockCreateAccountExternalAPI} from "../../utils/Mocks/MockCreateAccountExternalAPI.ts";
 import type {AuthEventsEnum} from "../../domain/enum/AuthEventsEnum.ts";
-import {SignUpIUBehaviorHandler} from "./SignUp.IUBehavior-handler.ts";
 import {container} from "../../../main.ts";
 
 export default class SignUpComponent
@@ -13,14 +12,12 @@ export default class SignUpComponent
     private debouncerTimer: number | null = null;
     private readonly proxyData: ProxyData;
     private readonly mockApiService: MockCreateAccountExternalAPI;
-    private readonly behaviorHandler: SignUpIUBehaviorHandler;
 
     public constructor()
     {
         const eventBus = new EventBus<AuthEventsEnum>();
         this.proxyData = container.resolve(ProxyData);
         this.mockApiService = new MockCreateAccountExternalAPI(eventBus);
-        this.behaviorHandler = new SignUpIUBehaviorHandler(eventBus);
     }
 
     public init(): void
