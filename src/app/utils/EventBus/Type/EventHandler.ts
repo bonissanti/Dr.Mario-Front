@@ -1,1 +1,0 @@
-export type EventHandler<T> = (event: T, payload: any) => void;
