@@ -1,0 +1,32 @@
+<div id="sign-up" class="mx-auto max-w-6xl m-40">
+    <h1 id="Title" class="text-3xl text-center font-bold text-gray-900">
+        Larilou
+    </h1>
+
+    <div class="flex justify-center v-screen divide-x divide-gray-400 mt-8">
+        <form class="input-validation-required">
+            <wa-input class="firstName" label="First Name" placeholder="Larilou" required></wa-input>
+            <br />
+            <wa-input class="lastName" label="Last Name" placeholder="Larilou do larilei" required></wa-input>
+            <br />
+            <wa-input class="username" label="Username" placeholder="_larilou" required></wa-input>
+            <br />
+            <wa-input class="email" label="Email" type="email" placeholder="larilou@email.com" required></wa-input>
+            <br />
+            <wa-input class="password" label="Password" type="password" required></wa-input>
+            <br />
+            <wa-input class="confirm-password" label="Confirm Password" type="password" required></wa-input>
+            <br />
+            <wa-input class="birth-date" label="Birth date" type="date" required></wa-input>
+            <br />
+            <wa-select name="country" label="Your country" class="text-left" with-clear required>
+
+            </wa-select>
+            <br />
+            <wa-checkbox required>I agree to the Terms of Service and Privacy Policy</wa-checkbox>
+            <br /><br />
+            <wa-button type="submit" variant="brand">Submit</wa-button>
+            <wa-button type="reset" variant="neutral">Reset</wa-button>
+        </form>
+    </div>
+</div>
