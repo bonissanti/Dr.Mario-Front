@@ -1,86 +1,89 @@
-type Direction = 'horizontal' | 'vertical';
-type Rect = { x: number, y: number, width: number, height: number };
-type Node = LeafNode | SplitNode;
+type SplitType = 'horizontal' | 'vertical';
 
-class LeafNode {
-    type = "leaf" as const;
-    windowId: string;
+class Node {
+    id: string;
+    appName: string;
+    parent: Node | null = null;
+    leftChild: Node | null = null;
+    rightChild: Node | null = null;
+    splitType: SplitType | null = null;
+    splitRatio: number;
 
-    constructor(windowId: string) {
-        this.windowId = windowId;
+    constructor(appName: string, id: string | null = null) {
+        this.id = id ?? crypto.randomUUID();
+        this.parent = null;
+        this.leftChild = null;
+        this.rightChild = null;
+        this.splitType = null;
+        this.appName = appName;
+        this.splitRatio = 0.5;
     }
 }
-
-class SplitNode {
-    type = "split" as const;
-    direction: Direction;
-    ratio: number;
-    left: Node;
-    right: Node;
-
-    constructor(direction: Direction, ratio: number, left: Node, right: Node) {
-        this.direction = direction;
-        this.ratio = ratio;
-        this.left = left;
-        this.right = right;
-    }
-}
-
-export class Tree {
+class BSPWM {
     root: Node | null = null;
-    windowQueue: string[] = [];
 
-    public insertWindow(windowId: string): void
+    public insert(targetNode: Node, newId: string, splitType: SplitType): void
     {
-        if (this.root === null)
+        const newNode = new Node(newId);
+
+        if (!this.root)
         {
-            this.root = new LeafNode(windowId);
+            this.root = newNode;
+            return ;
+        }
+
+        targetNode.splitType = splitType;
+        targetNode.splitRatio = 0.5;
+
+        const oldWindow = new Node(targetNode.appName, targetNode.id);
+        oldWindow.parent = targetNode;
+        targetNode.leftChild = oldWindow;
+
+        newNode.parent = targetNode;
+        targetNode.rightChild = newNode;
+    }
+
+    public remove(id: string): void {
+        if (!this.root)
+            return;
+
+        const nodeToRemove = this.findNode(this.root, id);
+        if (!nodeToRemove) {
+            console.error(`Node ${id} not found`);
             return;
         }
 
-        if (this.windowQueue.length > 4)
-        {
-            this.removeOldestWindow();
+        const parentNode = nodeToRemove.parent;
+        if (!parentNode) {
+            this.root = null;
+            return;
         }
 
-        target = pickInsertTarget();
+        const siblingNode = parentNode.leftChild === nodeToRemove ? parentNode.rightChild : parentNode.leftChild;
+        const newNode = parentNode.parent;
+        if (!newNode) {
+            this.root = siblingNode;
+            return;
+        }
 
-        newSplit = new SplitNode(
-            this.chooseDirection(target.rect),
-            0.5,
-            new LeafNode(target.windowId),
-            new LeafNode(windowId)
-        )
+        siblingNode!.parent = newNode;
+        if (newNode.leftChild === parentNode)
+            newNode.leftChild = siblingNode;
+        else
+            newNode.rightChild = siblingNode;
     }
 
-    public removeOldestWindow(): void
-    {
-        this.removeWindow(this.windowQueue[0]);
-    }
+    public findNode(root: Node | null | undefined, id: string): Node | null {
+        if (!root)
+            return null;
 
-    private removeWindow(windowId: string): void
-    {
-        leaf = findLeaf(windowId);
-    }
+        if (root?.id == id)
+            return root;
 
-    private findLeaf(windowId: string, node: Node| null): LeafNode | undefined
-    {
-        if (node == null)
-            return undefined;
+        const nodeLeft = this.findNode(root?.leftChild, id);
+        if (nodeLeft)
+            return nodeLeft;
 
-        if (node.type === "leaf")
-            return node.windowId === windowId ? node : undefined;
-
-        return this.findLeaf(windowId, node.left) || this.findLeaf(windowId, node.right);
-    }
-
-    public chooseDirection(rect: Rect): Direction
-    {
-        if (rect.width > rect.height)
-            return 'horizontal';
-        return 'vertical';
+        return this.findNode(root?.rightChild, id);
     }
 }
-
-
-
