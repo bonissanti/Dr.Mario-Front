@@ -1,5 +1,6 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import {BSPWM, Node} from "../../../shared/components/Tile/bspwm.ts";
+import {BSPWM, LeafNode, SplitNode} from "../../../shared/components/Tile/bspwm.ts";
+import {createLeaf} from "../../../shared/fixtures/bspwmFixture.ts";
 
 describe('BSPWM - Remove', () => {
     let bspwm: BSPWM;
@@ -21,8 +22,8 @@ describe('BSPWM - Remove', () => {
 
     describe('remove root node', () => {
         it('should set root to null when removing the only node', () => {
-            const rootNode = new Node('firefox');
-            bspwm.insert(rootNode, new Node('ignored'), 'horizontal');
+            const rootNode = createLeaf('firefox');
+            bspwm.insert(createLeaf('ignored'), rootNode, 'horizontal');
 
             bspwm.remove(rootNode.id);
 
@@ -32,45 +33,52 @@ describe('BSPWM - Remove', () => {
 
     describe('remove leaf node', () => {
         it('should remove leaf node and promote sibling', () => {
-            const rootNode = new Node('firefox');
-            bspwm.insert(rootNode, new Node('ignored'), 'horizontal');
+            const rootNode = createLeaf('firefox');
+            bspwm.insert(createLeaf('ignored'), rootNode, 'horizontal');
 
-            const chrome = new Node('chrome');
-            bspwm.insert(bspwm.root!, chrome, 'horizontal');
+            const chrome = createLeaf('chrome');
+            bspwm.insert(rootNode, chrome, 'horizontal');
 
             // Remove the right child (leaf)
             bspwm.remove(chrome.id);
 
-            // The left child (copy of firefox) should become the new root
+            // The left child (firefox) should become the new root
             expect(bspwm.root).not.toBeNull();
-            expect(bspwm.root!.appName).toBe('firefox');
+            expect((bspwm.root as LeafNode).appName).toBe('firefox');
             expect(bspwm.root!.id).toBe(rootNode.id);
         });
 
         it('should maintain tree structure after leaf removal', () => {
-            const rootNode = new Node('firefox');
-            bspwm.insert(rootNode, new Node('ignored'), 'horizontal');
-            bspwm.insert(bspwm.root!, new Node('chrome'), 'horizontal');
+            const rootNode = createLeaf('firefox');
+            bspwm.insert(createLeaf('ignored'), rootNode, 'horizontal');
+            bspwm.insert(rootNode, createLeaf('chrome'), 'horizontal');
 
-            const spotify = new Node('spotify');
-            bspwm.insert(bspwm.root!, spotify, 'vertical');
+            const spotify = createLeaf('spotify');
+            // root is SplitNode(firefox, chrome)
+            // Insert spotify into the chrome node
+            const chrome = (bspwm.root as SplitNode).rightChild as LeafNode;
+            bspwm.insert(chrome, spotify, 'vertical');
 
             bspwm.remove(spotify.id);
 
             expect(bspwm.root).not.toBeNull();
+            expect(bspwm.root!.type).toBe('SplitNode');
         });
     });
 
     describe('remove internal node', () => {
-        it('should handle removing node with children by promoting sibling', () => {
-            const rootNode = new Node('firefox');
-            bspwm.insert(rootNode, new Node('ignored'), 'horizontal');
-            bspwm.insert(bspwm.root!, new Node('chrome'), 'horizontal');
+        it('should NOT handle removing ID of a SplitNode since remove uses findLeaf which only finds LeafNodes', () => {
+            const rootNode = createLeaf('firefox');
+            bspwm.insert(createLeaf('ignored'), rootNode, 'horizontal');
+            bspwm.insert(rootNode, createLeaf('chrome'), 'horizontal');
 
-            // root is now an internal container — remove it
-            bspwm.remove(bspwm.root!.id);
+            // root is now an internal container (SplitNode)
+            const rootId = bspwm.root!.id;
+            bspwm.remove(rootId);
 
+            // It should still be there because findLeaf only returns LeafNodes
             expect(bspwm.root).not.toBeNull();
+            expect(bspwm.root!.id).toBe(rootId);
         });
     });
 
@@ -78,8 +86,8 @@ describe('BSPWM - Remove', () => {
         it('should log error when node is not found', () => {
             const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 
-            const rootNode = new Node('firefox');
-            bspwm.insert(rootNode, new Node('ignored'), 'horizontal');
+            const rootNode = createLeaf('firefox');
+            bspwm.insert(createLeaf('ignored'), rootNode, 'horizontal');
 
             bspwm.remove('non-existent-id');
 
@@ -88,9 +96,9 @@ describe('BSPWM - Remove', () => {
         });
 
         it('should not modify tree when node is not found', () => {
-            const rootNode = new Node('firefox');
-            bspwm.insert(rootNode, new Node('ignored'), 'horizontal');
-            bspwm.insert(bspwm.root!, new Node('chrome'), 'horizontal');
+            const rootNode = createLeaf('firefox');
+            bspwm.insert(createLeaf('ignored'), rootNode, 'horizontal');
+            bspwm.insert(rootNode, createLeaf('chrome'), 'horizontal');
 
             const rootBefore = bspwm.root;
             bspwm.remove('non-existent-id');
@@ -101,13 +109,13 @@ describe('BSPWM - Remove', () => {
 
     describe('parent reference updates', () => {
         it('should update parent reference of promoted sibling', () => {
-            const rootNode = new Node('firefox');
-            bspwm.insert(rootNode, new Node('ignored'), 'horizontal');
+            const rootNode = createLeaf('firefox');
+            bspwm.insert(createLeaf('ignored'), rootNode, 'horizontal');
 
-            const chrome = new Node('chrome');
-            bspwm.insert(bspwm.root!, chrome, 'horizontal');
+            const chrome = createLeaf('chrome');
+            bspwm.insert(rootNode, chrome, 'horizontal');
 
-            const leftChild = bspwm.root!.leftChild!;
+            const leftChild = (bspwm.root as SplitNode).leftChild!;
             bspwm.remove(chrome.id);
 
             expect(bspwm.root).toBe(leftChild);

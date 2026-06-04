@@ -1,4 +1,4 @@
-type SplitType = 'horizontal' | 'vertical';
+export type SplitType = 'horizontal' | 'vertical';
 type BSPWMType = LeafNode | SplitNode;
 
 abstract class BSPWMNode {
