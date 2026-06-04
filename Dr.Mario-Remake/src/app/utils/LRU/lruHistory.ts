@@ -18,6 +18,10 @@ export class LRUHistory<K, V> {
         return this.map.get(key)?.value;
     }
 
+    public getFirst(): K | undefined {
+        return this.head?.key;
+    }
+
     public has(key: K): boolean {
         return this.map.has(key);
     }
