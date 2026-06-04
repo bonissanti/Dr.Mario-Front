@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import {BSPWM, LeafNode, SplitNode} from "../../../shared/components/Tile/bspwm.ts";
+import {BSPWM, LeafNode, SplitNode} from "../../../app/utils/Tile/bspwm.ts";
 import {createLeaf} from "../../../shared/fixtures/bspwmFixture.ts";
 
 describe('BSPWM - Remove', () => {
@@ -21,41 +21,53 @@ describe('BSPWM - Remove', () => {
     });
 
     describe('remove root node', () => {
-        it('should set root to null when removing the only node', () => {
-            const rootNode = createLeaf('firefox');
-            bspwm.insert(createLeaf('ignored'), rootNode, 'horizontal');
+        it('should set root to null when removing the only window', () => {
+            const firefox = createLeaf('firefox');
+            bspwm.insert(firefox);
 
-            bspwm.remove(rootNode.id);
+            bspwm.remove(firefox.id);
 
             expect(bspwm.root).toBeNull();
         });
     });
 
     describe('remove leaf node', () => {
-        it('should remove leaf node and promote sibling', () => {
-            const rootNode = createLeaf('firefox');
-            bspwm.insert(createLeaf('ignored'), rootNode, 'horizontal');
+        it('should remove leaf node and promote its sibling to root', () => {
+            const firefox = createLeaf('firefox');
+            bspwm.insert(firefox);
 
             const chrome = createLeaf('chrome');
-            bspwm.insert(rootNode, chrome, 'horizontal');
+            bspwm.insert(firefox, chrome, 'horizontal');
 
-            // Remove the right child (leaf)
+            // Remove the right child (chrome)
             bspwm.remove(chrome.id);
 
-            // The left child (firefox) should become the new root
+            // firefox should become the new root
             expect(bspwm.root).not.toBeNull();
             expect((bspwm.root as LeafNode).appName).toBe('firefox');
-            expect(bspwm.root!.id).toBe(rootNode.id);
+            expect(bspwm.root!.id).toBe(firefox.id);
         });
 
-        it('should maintain tree structure after leaf removal', () => {
-            const rootNode = createLeaf('firefox');
-            bspwm.insert(createLeaf('ignored'), rootNode, 'horizontal');
-            bspwm.insert(rootNode, createLeaf('chrome'), 'horizontal');
+        it('should promote left sibling when right leaf is removed', () => {
+            const firefox = createLeaf('firefox');
+            bspwm.insert(firefox);
+            bspwm.insert(firefox, createLeaf('chrome'), 'horizontal');
+
+            const leftChild = (bspwm.root as SplitNode).leftChild as LeafNode;
+            const rightChild = (bspwm.root as SplitNode).rightChild as LeafNode;
+
+            bspwm.remove(rightChild.id);
+
+            expect(bspwm.root!.id).toBe(leftChild.id);
+        });
+
+        it('should maintain tree structure after leaf removal in a deeper tree', () => {
+            const firefox = createLeaf('firefox');
+            bspwm.insert(firefox);
+            bspwm.insert(firefox, createLeaf('chrome'), 'horizontal');
 
             const spotify = createLeaf('spotify');
-            // root is SplitNode(firefox, chrome)
-            // Insert spotify into the chrome node
+            // root = SplitNode(firefox, chrome); insert spotify next to chrome
             const chrome = (bspwm.root as SplitNode).rightChild as LeafNode;
             bspwm.insert(chrome, spotify, 'vertical');
 
@@ -67,12 +79,12 @@ describe('BSPWM - Remove', () => {
     });
 
     describe('remove internal node', () => {
-        it('should NOT handle removing ID of a SplitNode since remove uses findLeaf which only finds LeafNodes', () => {
-            const rootNode = createLeaf('firefox');
-            bspwm.insert(createLeaf('ignored'), rootNode, 'horizontal');
-            bspwm.insert(rootNode, createLeaf('chrome'), 'horizontal');
+        it('should NOT remove a SplitNode since findLeaf only finds LeafNodes', () => {
+            const firefox = createLeaf('firefox');
+            bspwm.insert(firefox);
+            bspwm.insert(firefox, createLeaf('chrome'), 'horizontal');
 
-            // root is now an internal container (SplitNode)
+            // root is now a SplitNode
             const rootId = bspwm.root!.id;
             bspwm.remove(rootId);
 
@@ -86,8 +98,8 @@ describe('BSPWM - Remove', () => {
         it('should log error when node is not found', () => {
             const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 
-            const rootNode = createLeaf('firefox');
-            bspwm.insert(createLeaf('ignored'), rootNode, 'horizontal');
+            const firefox = createLeaf('firefox');
+            bspwm.insert(firefox);
 
             bspwm.remove('non-existent-id');
 
@@ -96,9 +108,9 @@ describe('BSPWM - Remove', () => {
         });
 
         it('should not modify tree when node is not found', () => {
-            const rootNode = createLeaf('firefox');
-            bspwm.insert(createLeaf('ignored'), rootNode, 'horizontal');
-            bspwm.insert(rootNode, createLeaf('chrome'), 'horizontal');
+            const firefox = createLeaf('firefox');
+            bspwm.insert(firefox);
+            bspwm.insert(firefox, createLeaf('chrome'), 'horizontal');
 
             const rootBefore = bspwm.root;
             bspwm.remove('non-existent-id');
@@ -108,12 +120,12 @@ describe('BSPWM - Remove', () => {
     });
 
     describe('parent reference updates', () => {
-        it('should update parent reference of promoted sibling', () => {
-            const rootNode = createLeaf('firefox');
-            bspwm.insert(createLeaf('ignored'), rootNode, 'horizontal');
+        it('should update parent reference of promoted sibling to null', () => {
+            const firefox = createLeaf('firefox');
+            bspwm.insert(firefox);
 
             const chrome = createLeaf('chrome');
-            bspwm.insert(rootNode, chrome, 'horizontal');
+            bspwm.insert(firefox, chrome, 'horizontal');
 
             const leftChild = (bspwm.root as SplitNode).leftChild!;
             bspwm.remove(chrome.id);

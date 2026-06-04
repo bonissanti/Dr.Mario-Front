@@ -1,4 +1,4 @@
-import {LeafNode, SplitNode, type SplitType } from "../components/Tile/bspwm.ts";
+import {LeafNode, SplitNode, type SplitType } from "../../app/utils/Tile/bspwm.ts";
 
 export const createLeaf = (appName: string): LeafNode => {
     return new LeafNode(appName);

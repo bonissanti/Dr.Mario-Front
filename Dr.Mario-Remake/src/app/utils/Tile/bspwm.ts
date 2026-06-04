@@ -39,13 +39,21 @@ export class BSPWM
 {
     root: BSPWMType | null = null;
 
-    public insert(target: LeafNode, newLeaf: LeafNode, split: SplitType): void
+    public insert(newLeaf: LeafNode): void;
+    public insert(target: LeafNode, newLeaf: LeafNode, split: SplitType): void;
+    public insert(targetOrNewLeaf: LeafNode, newLeaf?: LeafNode, split?: SplitType): void
     {
         if (!this.root) {
-            this.root = newLeaf;
+            this.root = targetOrNewLeaf;
             return;
         }
 
+        if (!newLeaf || !split) {
+            console.error('Target, newLeaf and split are required when tree is non-empty');
+            return;
+        }
+
+        const target = targetOrNewLeaf;
         const parent = target.parent;
         const newSplit: SplitNode = new SplitNode(split);
 
