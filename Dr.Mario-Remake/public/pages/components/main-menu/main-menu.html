@@ -1,23 +1,136 @@
-<div class="w-[90vw] h-[85vh] max-w-[1100px] max-h-[700px] min-w-[320px] min-h-[400px] bg-neutral-50 rounded-xl shadow-2xl overflow-hidden flex flex-col border border-neutral-800">
+<!-- Wrapper que dá o respiro -->
+<!--<div class="px-4 flex justify-center">-->
+<!--    <div class="bg-yellow-400 rounded-2xl mx-auto max-w-dvh" style="width: clamp(300px, 80vw, 1920px); height: clamp(300px, 50vh, 1000px);">-->
+<!--        &lt;!&ndash; conteúdo &ndash;&gt;-->
+<!--    </div>-->
+<!--</div>-->
 
-    <!--top bar-->
-    <div class="h-12 bg-neutral-100 border-b border-b-neutral-500 grid grid-cols-3 items-center px-4 select-none">
+<!--<div class="px-4 flex justify-center">-->
+<!--    <div class="bg-yellow-400 rounded-2xl mt-32" style="width: 1700px; height:1100px;">-->
+<!--        &lt;!&ndash; conteúdo &ndash;&gt;-->
+<!--    </div>-->
+<!--</div>-->
 
-        <!--left-->
-        <div class="flex items-center gap-2 text-neutral-900"><sl-icon name="file-earmark-check"></sl-icon></div>
+<!--TODO: in small monitors, the main image of the carrossel gets bigger distance of header. In big monitors is good-->
+<wa-carousel class="carousel-thumbnails" navigation loop>
+    <wa-carousel-item>
+        <img
+                alt="The sun shines on the mountains and trees (by Adam Kool on Unsplash)"
+                src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?q=10"
+        />
+    </wa-carousel-item>
+    <wa-carousel-item>
+        <img
+                alt="A river winding through an evergreen forest (by Luca Bravo on Unsplash)"
+                src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?q=10"
+        />
+    </wa-carousel-item>
+    <wa-carousel-item>
+        <img
+                alt="The sun is setting over a lavender field (by Leonard Cotte on Unsplash)"
+                src="https://images.unsplash.com/photo-1499002238440-d264edd596ec?q=10"
+        />
+    </wa-carousel-item>
+    <wa-carousel-item>
+        <img
+                alt="A field of grass with the sun setting in the background (by Sapan Patel on Unsplash)"
+                src="https://images.unsplash.com/photo-1475113548554-5a36f1f523d6?q=10"
+        />
+    </wa-carousel-item>
+    <wa-carousel-item>
+        <img
+                alt="A scenic view of a mountain with clouds rolling in (by V2osk on Unsplash)"
+                src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=10"
+        />
+    </wa-carousel-item>
+</wa-carousel>
 
-        <!--center-->
-        <div class="text-center text-sm text-neutral-900 font-medium">Tutorial</div>
-
-        <!--right-->
-        <div class="flex justify-end items-center gap-1">
-            <wa-button size="small" variant="neutral" appearance="plain"><sl-icon name="dash-lg"></sl-icon></wa-button>
-            <wa-button size="small" variant="neutral" appearance="plain"><sl-icon name="fullscreen"></sl-icon></wa-button>
-            <wa-button size="small" variant="neutral" appearance="plain"><sl-icon name="x-lg"></sl-icon></wa-button>
-        </div>
-    </div>
-
-    <div class="flex-1 bg-neutral-50 p-6 text-neutral-900">
-        Larilou
+<div class="thumbnails">
+    <div class="scroller">
+        <img
+                alt="Thumbnail by 1"
+                class="image active"
+                src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?q=10"
+        />
+        <img alt="Thumbnail by 2" class="image" src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?q=10" />
+        <img alt="Thumbnail by 3" class="image" src="https://images.unsplash.com/photo-1499002238440-d264edd596ec?q=10" />
+        <img alt="Thumbnail by 4" class="image" src="https://images.unsplash.com/photo-1475113548554-5a36f1f523d6?q=10" />
+        <img alt="Thumbnail by 5" class="image" src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=10" />
     </div>
 </div>
+
+<style>
+    .carousel-thumbnails {
+        --slide-aspect-ratio: 3 / 2;
+    }
+
+    .thumbnails {
+        display: flex;
+        justify-content: center;
+    }
+
+    .scroller {
+        display: flex;
+        gap: var(--wa-space-s);
+        overflow-x: auto;
+        scrollbar-width: none;
+        scroll-behavior: smooth;
+        scroll-padding: var(--wa-space-s);
+    }
+
+    .scroller::-webkit-scrollbar {
+        display: none;
+    }
+
+    .image {
+        width: 64px;
+        height: 64px;
+        object-fit: cover;
+
+        opacity: 0.3;
+        will-change: opacity;
+        transition: 250ms opacity;
+
+        cursor: pointer;
+    }
+
+    .image.active {
+        opacity: 1;
+    }
+</style>
+
+<script>
+    {
+        const carousel = document.querySelector('.carousel-thumbnails');
+        const scroller = document.querySelector('.scroller');
+        const thumbnails = document.querySelectorAll('.image');
+
+        scroller.addEventListener('click', e => {
+            const target = e.target;
+
+            if (target.matches('.image')) {
+                const index = [...thumbnails].indexOf(target);
+                carousel.goToSlide(index);
+            }
+        });
+
+        carousel.addEventListener('wa-slide-change', e => {
+            const slideIndex = e.detail.index;
+
+            [...thumbnails].forEach((thumb, i) => {
+                thumb.classList.toggle('active', i === slideIndex);
+                if (i === slideIndex) {
+                    thumb.scrollIntoView({
+                        block: 'nearest',
+                    });
+                }
+            });
+        });
+    }
+</script>
+
+
+
+<!--<div class="w-full max-w-[calc(2000vw-666px)] mx-auto bg-yellow-400 px-24 rounded-lg">-->
+<!--    <p class="p-4 text-neutral-900">This is a yellow block div.</p>-->
+<!--</div>-->

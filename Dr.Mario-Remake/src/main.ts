@@ -23,7 +23,7 @@ const routes: IRouter[] = [
     { path: '/', component: '/pages/home.html', controller: undefined, guardRoute: false },
     { path: '/about', component: '/pages/about.html', controller: undefined, guardRoute: false },
     { path: '/contact', component: '/pages/howtoplay.html', controller: undefined, guardRoute: false },
-    { path: '/main-menu', component: '/pages/components/main-menu/main-menu.html', controller: undefined, guardRoute: false }, //TODU: should be true
+    { path: '/main-menu', component: '/pages/components/main-menu/main-menu.html', controller: () => import('./app/components/Main-Menu/MainMenu.component.ts'), guardRoute: false }, //TODO: should be true
     { path: '/login-signUp', component: '/pages/components/login-signUp/login-signUp.html', controller: undefined, guardRoute: false },
     { path: '/sign-up', component: '/pages/components/login-signUp/sign-up.html', controller: () => import('./app/components/Sign-Up/SignUp.component.ts'), guardRoute: false },
     { path: '/error-404', component: '/pages/error/error404.html', controller: undefined, guardRoute: false },

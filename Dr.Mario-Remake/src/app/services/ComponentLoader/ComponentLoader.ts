@@ -31,6 +31,7 @@ export class ComponentLoader extends AComponentLoader
         this.hostElement.style.opacity = '0';
         this.hostElement.style.transition = 'opacity 0.3s ease-in-out';
         this.hostElement.innerHTML = html;
+        this.executeScripts(this.hostElement);
 
         requestAnimationFrame(() => this.hostElement.style.opacity = '1');
     }
@@ -61,12 +62,23 @@ export class ComponentLoader extends AComponentLoader
         }
         this.loadedComponent = componentPath;
         this.hostElement.innerHTML = component.html;
+        this.executeScripts(this.hostElement);
         return true;
     }
 
     private checkIfComponentIsCached(componentPath: string): boolean
     {
         return this.cachedComponents.has(componentPath);
+    }
+
+    private executeScripts(container: HTMLElement): void
+    {
+        container.querySelectorAll('script').forEach(oldScript => {
+            const newScript = document.createElement('script');
+            oldScript.getAttributeNames().forEach(attr => newScript.setAttribute(attr, oldScript.getAttribute(attr)!));
+            newScript.textContent = oldScript.textContent;
+            oldScript.replaceWith(newScript);
+        });
     }
 
     private setNewComponent(componentPath: string, response: string): void
