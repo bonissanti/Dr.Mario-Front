@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@awesome.me/webawesome": "^3.1.0",
+    "@robbandi/figment": "^1.2.0",
     "@tailwindcss/vite": "^4.1.17",
     "axios": "^1.13.2",
     "countries-list": "^3.2.2",
