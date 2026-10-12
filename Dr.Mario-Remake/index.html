@@ -12,76 +12,68 @@
   </head>
 
 
-  <body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen p-24 transition-opacity duration-100">
-      <header class="fixed top-0 left-0 right-0 w-full bg-gray-100 z-50 border-b border-gray-300">
-          <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
-              <!-- Logo -->
-              <div id="logo" class="text-xl sm:text-2xl font-bold text-gray-800 flex-shrink-0">
-                  Dr. Mario
-              </div>
+  <body class="bg-[#f7f4ea] text-[#17251f] flex flex-col min-h-screen">
+      <header class="sticky top-0 z-50 bg-[#f7f4ea]/95 backdrop-blur border-b border-[#17251f1c]">
+          <nav aria-label="main-nav" class="max-w-310 mx-auto px-4 sm:px-7 h-[72px] flex items-center justify-between gap-4 relative">
+              <a href="/" data-link class="flex items-center gap-2.5 font-extrabold text-sm tracking-tight text-[#17251f] no-underline hover:text-[#17251f]">
+                  <span class="block w-8.5 h-5 rounded-full bg-[#ff6257] border-2 border-[#17251f] overflow-hidden -rotate-35"><span class="block w-1/2 h-full bg-[#fffdf8] border-r-2 border-[#17251f]"></span></span>
+                  DR. MARIO REMAKE
+              </a>
+              <!-- mobile menu toggle (CSS only, replaces <details>) -->
+              <input id="nav-toggle" type="checkbox" class="peer sr-only" aria-label="Toggle menu">
 
-              <!-- Desktop Navigation (hidden on mobile) -->
-              <nav aria-label="desktop-nav" class="hidden md:flex gap-6 text-gray-600 font-medium">
-                  <a href="#" class="text-sm text-gray-600 hover:text-gray-900 transition">Home</a>
-                  <a href="#" class="text-sm text-gray-600 hover:text-gray-900 transition">About</a>
-                  <a href="#" class="text-sm text-gray-600 hover:text-gray-900 transition">How to play</a>
-              </nav>
+              <div class="hidden peer-checked:flex md:flex absolute md:static left-0 right-0 top-full md:top-auto bg-[#f7f4ea] md:bg-transparent border-b md:border-0 border-[#17251f1c] px-4 py-4 md:p-0 flex-col md:flex-row md:items-center gap-3 md:gap-8 md:flex-1 md:justify-between">
+                  <div class="flex flex-col md:flex-row gap-3 md:gap-8 md:mx-auto text-base font-bold">
+                      <a href="/main-menu" data-link
+                         class="inline-block text-[#17251f]! no-underline! transition duration-150 ease-out hover:text-[#ff6257]! hover:-translate-y-0.5">Play</a>
+                      <a href="/#community"
+                         class="inline-block text-[#17251f]! no-underline! transition duration-150 ease-out hover:text-[#ff6257]! hover:-translate-y-0.5">Community</a>
+                      <a href="/#shop"
+                         class="inline-block text-[#17251f]! no-underline! transition duration-150 ease-out hover:text-[#ff6257]! hover:-translate-y-0.5">Shop</a>
+                  </div>
 
-              <!-- Mobile Menu Button (visible only on mobile) -->
-              <button id="menu-toggle" class="md:hidden p-2 rounded hover:bg-gray-100">
-                  <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                  </svg>
-              </button>
-          </div>
 
-          <!-- Mobile Navigation Menu (hidden by default) -->
-          <nav aria-label="mobile-nav" id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
-              <div class="px-4 sm:px-6 py-4 space-y-3">
-                  <a href="#" class="block text-sm text-gray-600 hover:text-gray-900 py-2 transition">Home</a>
-                  <a href="#" class="block text-sm text-gray-600 hover:text-gray-900 py-2 transition">About</a>
-                  <a href="#" class="block text-sm text-gray-600 hover:text-gray-900 py-2 transition">How to play</a>
+
+                  <div class="flex items-center gap-2.5">
+                      <!-- wallet -->
+                      <div id="wallet" class="inline-flex items-center gap-1.5 rounded-full border border-[#17251f1c] bg-white/50 px-3.5 py-2.5 font-mono text-[13px] font-medium text-[#17251f]" aria-label="Your coins">
+                          <svg aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#e7ad00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M14.8 8.5c-.7-.6-1.5-.9-2.7-.9-1.5 0-2.6.8-2.6 1.9 0 3 5.3 1.2 5.3 4.5 0 1.3-1.1 2.3-2.8 2.3-1.2 0-2.3-.4-3.1-1.1M12 5.5v13"/></svg>
+                          <b id="wallet-coins" class="font-medium">1,200</b>
+                      </div>
+<!--                      <wa-button id="sign-in-btn" href="/login-signUp" data-link pill size="medium">Sign in</wa-button>-->
+                      <wa-button
+                              id="sign-in-btn"
+                              href="/login-signUp"
+                              data-link
+                              pill
+                              size="small"
+                              class="
+                                 transition duration-150 ease-out hover:-translate-y-0.5
+                                [&::part(base)]:bg-[#17251f]
+                                [&::part(base)]:border-[#17251f]
+                                [&::part(base)]:text-[#fffdf8]
+                                [&::part(base)]:font-bold
+                                [&:hover::part(base)]:bg-[#ff6257]
+                                [&:hover::part(base)]:border-[#ff6257]
+                                [&:hover::part(base)]:text-[#17251f]
+                            ">
+                          Sign in
+                      </wa-button>
+                  </div>
               </div>
           </nav>
-      </header>  <!-- page mainly configuration -->
+      </header>
 
       <!--    This is where all page content will be loaded-->
-      <div id="app"></div>
+      <div id="app" class="w-full flex-1"></div>
 
-      <!--  footer-->
-      <footer class="w-full border-t border-gray-400 mt-16">
-        <div class="max-w-7xl mx-auto px-6 py-8 text-center justify-center flex flex-col">
-
-            <!-- Top section with logo and nav -->
-            <div class="flex items-center justify-between mb-8">
-                <div class="flex items-center gap-2">
-                    <svg class="w-6 h-6 text-blue-400" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
-                    </svg>
-                    <span class="font-semibold text-gray-900">Bonissanti</span>
-                </div>
-                <div class="flex space-x-6">
-                    <a href="#" class="text-sm text-gray-600 hover:text-gray-900">How to play</a>
-                    <a href="#" class="text-sm text-gray-600 hover:text-gray-900">Portfolio</a>
-                    <a href="#" class="text-sm text-gray-600 hover:text-gray-900">Contact Me</a>
-                </div>
-                <div class="flex gap-4">
-                    <a href="#"><sl-icon name="linkedin"></sl-icon></a>
-                    <a href="#"><sl-icon name="github"></sl-icon></a>
-                </div>
-            </div>
-
-            <!-- Divider -->
-            <div class="border-t border-gray-200 pt-6"></div>
-
-            <!-- Bottom section with company info -->
-            <div class="text-xs text-gray-500 space-y-1 ">
-                <p>São Paulo, Brazil</p>
-                <p>All rights reserved to Nintendo</p>
-            </div>
-        </div>
-    </footer>
-      <!-- end footer-->
+      <footer class="border-t border-[#17251f1c] bg-[#f7f4ea] text-[#66716b]">
+          <div class="max-w-295 mx-auto min-h-28 px-7 py-6 flex flex-col md:flex-row justify-between items-center gap-3 text-[11px]">
+              <div class="flex items-center gap-2.5 text-[#17251f]"><span class="block w-8.5 h-5 rounded-full bg-[#ff6257] border-2 border-[#17251f] overflow-hidden -rotate-35"><span class="block w-1/2 h-full bg-[#fffdf8] border-r-2 border-[#17251f]"></span></span><strong>DR. MARIO REMAKE</strong></div>
+              <p class="m-0! text-center">Built for curious minds and quick fingers.</p>
+              <span class="font-mono text-[9px]">&copy; 2025 FAN PROJECT &middot; ALL RIGHTS RESERVED TO NINTENDO</span>
+          </div>
+      </footer>
 
       <script type="module" src="/src/main.ts"></script>
   </body>
