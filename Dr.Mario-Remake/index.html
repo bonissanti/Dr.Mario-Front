@@ -22,6 +22,17 @@
               <!-- mobile menu toggle (CSS only, replaces <details>) -->
               <input id="nav-toggle" type="checkbox" class="peer sr-only" aria-label="Toggle menu">
 
+              <!-- hamburger, mobile only -->
+              <label for="nav-toggle"
+                     class="md:hidden grid place-items-center w-10 h-10 rounded-full border border-[#17251f1c] bg-white/50 cursor-pointer transition duration-150 ease-out hover:bg-white peer-focus-visible:outline-2 peer-focus-visible:outline-[#8271e8]"
+                     aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#17251f" stroke-width="2" stroke-linecap="round">
+                      <path d="M4 7h16M4 12h16M4 17h16"/>
+                  </svg>
+              </label>
+
+              <div class="hidden peer-checked:flex md:flex ...">
+
               <div class="hidden peer-checked:flex md:flex absolute md:static left-0 right-0 top-full md:top-auto bg-[#f7f4ea] md:bg-transparent border-b md:border-0 border-[#17251f1c] px-4 py-4 md:p-0 flex-col md:flex-row md:items-center gap-3 md:gap-8 md:flex-1 md:justify-between">
                   <div class="flex flex-col md:flex-row gap-3 md:gap-8 md:mx-auto text-base font-bold">
                       <a href="/main-menu" data-link
@@ -35,12 +46,35 @@
 
 
                   <div class="flex items-center gap-2.5">
-                      <!-- wallet -->
-                      <div id="wallet" class="inline-flex items-center gap-1.5 rounded-full border border-[#17251f1c] bg-white/50 px-3.5 py-2.5 font-mono text-[13px] font-medium text-[#17251f]" aria-label="Your coins">
-                          <svg aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#e7ad00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M14.8 8.5c-.7-.6-1.5-.9-2.7-.9-1.5 0-2.6.8-2.6 1.9 0 3 5.3 1.2 5.3 4.5 0 1.3-1.1 2.3-2.8 2.3-1.2 0-2.3-.4-3.1-1.1M12 5.5v13"/></svg>
-                          <b id="wallet-coins" class="font-medium">1,200</b>
-                      </div>
-<!--                      <wa-button id="sign-in-btn" href="/login-signUp" data-link pill size="medium">Sign in</wa-button>-->
+                      <wa-button
+                              id="a11y-btn"
+                              appearance="plain"
+                              pill
+                              size="small"
+                              aria-label="Display and accessibility"
+                              aria-haspopup="dialog"
+                              aria-controls="a11y-dialog"
+                              class="
+                                transition duration-150 ease-out hover:-translate-y-0.5
+                                [&::part(base)]:bg-white/50!
+                                [&::part(base)]:border!
+                                [&::part(base)]:border-solid!
+                                [&::part(base)]:border-[#17251f1c]!
+                                [&::part(base)]:shadow-none!
+                                [&::part(base)]:p-1.5!
+                                [&::part(base)]:min-h-0!
+                                [&::part(label)]:p-0!
+                                [&:hover::part(base)]:bg-white!
+                            ">
+                          <wa-avatar initials="AA" label="" class="[--size:1.75rem]"></wa-avatar>
+                      </wa-button>
+
+                      <!-- TODO: put this in the main menu, people without an account can't see the money -->
+<!--                      &lt;!&ndash; wallet &ndash;&gt;-->
+<!--                      <div id="wallet" class="inline-flex items-center gap-1.5 rounded-full border border-[#17251f1c] bg-white/50 px-3.5 py-2.5 font-mono text-[13px] font-medium text-[#17251f]" aria-label="Your coins">-->
+<!--                          <svg aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#e7ad00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M14.8 8.5c-.7-.6-1.5-.9-2.7-.9-1.5 0-2.6.8-2.6 1.9 0 3 5.3 1.2 5.3 4.5 0 1.3-1.1 2.3-2.8 2.3-1.2 0-2.3-.4-3.1-1.1M12 5.5v13"/></svg>-->
+<!--                          <b id="wallet-coins" class="font-medium">1,200</b>-->
+<!--                      </div>-->
                       <wa-button
                               id="sign-in-btn"
                               href="/login-signUp"
@@ -74,6 +108,25 @@
               <span class="font-mono text-[9px]">&copy; 2025 FAN PROJECT &middot; ALL RIGHTS RESERVED TO NINTENDO</span>
           </div>
       </footer>
+
+      <wa-dialog id="a11y-dialog" label="Display &amp; accessibility" light-dismiss>
+          <div class="flex flex-col gap-5 text-[#17251f]">
+              <wa-radio-group id="a11y-theme" label="Theme" orientation="horizontal" value="auto">
+                  <wa-radio value="auto">Auto</wa-radio>
+                  <wa-radio value="light">Light</wa-radio>
+                  <wa-radio value="dark">Dark</wa-radio>
+              </wa-radio-group>
+              <wa-radio-group id="a11y-text" label="Text size" orientation="horizontal" value="normal">
+                  <wa-radio value="normal">Normal</wa-radio>
+                  <wa-radio value="large">Large</wa-radio>
+                  <wa-radio value="xlarge">Extra large</wa-radio>
+              </wa-radio-group>
+              <wa-switch id="a11y-motion">Reduce motion</wa-switch>
+              <wa-switch id="a11y-contrast">High contrast</wa-switch>
+              <wa-switch id="a11y-shapes">Colour-blind shapes</wa-switch>
+          </div>
+          <wa-button slot="footer" variant="brand" data-dialog="close">Done</wa-button>
+      </wa-dialog>
 
       <script type="module" src="/src/main.ts"></script>
   </body>

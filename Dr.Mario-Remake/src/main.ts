@@ -9,6 +9,8 @@ import {AComponentLoader} from "./app/services/ComponentLoader/AComponentLoader.
 import {AAuthService} from "./app/services/AuthService/AAuthService.ts";
 import {ProxyData} from "./app/utils/ProxyData/ProxyData.ts";
 
+import AccessibilityComponent from "./app/components/Accessibility/Accessibility.component.ts";
+
 export const container = new DIContainer();
 
 container.addScoped(AComponentLoader, ComponentLoader)
@@ -28,6 +30,8 @@ const routes: IRouter[] = [
     { path: '/sign-up', component: '/pages/components/login-signUp/sign-up.html', controller: () => import('./app/components/Sign-Up/SignUp.component.ts'), guardRoute: false },
     { path: '/error-404', component: '/pages/error/error404.html', controller: undefined, guardRoute: false },
 ]
+
+new AccessibilityComponent().init();
 
 globalThis.addEventListener('load', () => {
     router.preloadRoutes(['/', '/about', '/contact', '/main-menu']);
