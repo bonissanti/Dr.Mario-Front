@@ -8,8 +8,9 @@ import {DIContainer} from "./app/stores/DependencyInjection/Container/DIContaine
 import {AComponentLoader} from "./app/services/ComponentLoader/AComponentLoader.ts";
 import {AAuthService} from "./app/services/AuthService/AAuthService.ts";
 import {ProxyData} from "./app/utils/ProxyData/ProxyData.ts";
+import AccessibilityService from "./app/utils/Accessibility/Accessiblityservice.ts";
+import AccessibilityComponent from "./app/utils/Accessibility/Accessibility.component.ts";
 
-import AccessibilityComponent from "./app/components/Accessibility/Accessibility.component.ts";
 
 export const container = new DIContainer();
 
@@ -17,6 +18,8 @@ container.addScoped(AComponentLoader, ComponentLoader)
 container.addScoped(AAuthService, AuthService)
 container.addScoped(RouterService)
 container.addScoped(ProxyData)
+container.addSingleton(AccessibilityService)
+container.addScoped(AccessibilityComponent)
 
 const router = container.resolve(RouterService);
 const countries: Countries = Countries.getInstance();
@@ -31,7 +34,7 @@ const routes: IRouter[] = [
     { path: '/error-404', component: '/pages/error/error404.html', controller: undefined, guardRoute: false },
 ]
 
-new AccessibilityComponent().init();
+container.resolve(AccessibilityComponent).init()
 
 globalThis.addEventListener('load', () => {
     router.preloadRoutes(['/', '/about', '/contact', '/main-menu']);

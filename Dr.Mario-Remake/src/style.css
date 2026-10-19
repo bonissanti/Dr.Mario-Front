@@ -1,29 +1,22 @@
+@layer wa-native, wa-utilities, wa-color-palette, wa-color-variant, wa-theme, wa-theme-dimension, wa-theme-overrides;
 @import "tailwindcss";
 @import "./home.css";
 
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Manrope, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
+  color-scheme: light;
+  color: #17251f;
+  background-color: #f7f4ea;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
+/* dark theme canvas (utilities can't style the root element from a child) */
+:root[data-theme="dark"] { color-scheme: dark; color: #eef4ef; background-color: #111a16; }
 
 body {
   margin: 0;
@@ -92,21 +85,6 @@ button:focus-visible {
 }
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  @layer base {
-    button {
-      background-color: #f9f9f9;
-    }
-  }
-}
-
 :not(:defined) {
   visibility: hidden;
 }
@@ -115,19 +93,13 @@ a[data-link] {
   text-decoration: none;
   color: inherit;
 }
-/*#a11y-btn {*/
-/*  appearance: none !important;*/
-/*  background: rgb(255 255 255 / 0.5) !important;*/
-/*  border: 1px solid #17251f1c !important;*/
-/*  border-radius: 9999px !important;*/
-/*  box-shadow: none !important;*/
-/*  padding: 0.375rem 0.875rem 0.375rem 0.375rem !important;*/
-/*  color: #17251f !important;*/
-/*}*/
-/*#a11y-btn:hover {*/
-/*  background: #fff !important;*/
-/*}*/
-/*html[data-text="large"] { font-size: 112.5%; }*/
-/*html[data-text="xlarge"] { font-size: 125%; }*/
-/*html[data-motion="on"] *, html[data-motion="on"] *::before, html[data-motion="on"] *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }*/
-/*html[data-contrast="on"] { filter: contrast(1.25); }*/
+html[data-text="large"] { font-size: 112.5%; }
+html[data-text="xlarge"] { font-size: 125%; }
+html[data-motion="on"] *, html[data-motion="on"] *::before, html[data-motion="on"] *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+html[data-contrast="on"] { filter: contrast(1.25); }
+
+/* Global accessibility switches (can't be utilities on the dialog) */
+:root[data-text="small"] { font-size: 14px; }
+:root[data-text="large"] { font-size: 18px; }
+:root[data-motion="on"] *, :root[data-motion="on"] *::before, :root[data-motion="on"] *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+:root[data-contrast="on"] { filter: contrast(1.25); }
