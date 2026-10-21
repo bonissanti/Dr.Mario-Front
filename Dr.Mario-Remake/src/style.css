@@ -93,13 +93,31 @@ a[data-link] {
   text-decoration: none;
   color: inherit;
 }
-html[data-text="large"] { font-size: 112.5%; }
-html[data-text="xlarge"] { font-size: 125%; }
-html[data-motion="on"] *, html[data-motion="on"] *::before, html[data-motion="on"] *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
-html[data-contrast="on"] { filter: contrast(1.25); }
+/*html[data-text="large"] { font-size: 112.5%; }*/
+/*html[data-text="xlarge"] { font-size: 125%; }*/
+/*html[data-motion="on"] *, html[data-motion="on"] *::before, html[data-motion="on"] *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }*/
+/*html[data-contrast="on"] { filter: contrast(1.25); }*/
 
-/* Global accessibility switches (can't be utilities on the dialog) */
-:root[data-text="small"] { font-size: 14px; }
-:root[data-text="large"] { font-size: 18px; }
-:root[data-motion="on"] *, :root[data-motion="on"] *::before, :root[data-motion="on"] *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
-:root[data-contrast="on"] { filter: contrast(1.25); }
+/*!* Global accessibility switches (can't be utilities on the dialog) *!*/
+/*:root[data-text="small"] { font-size: 14px; }*/
+/*:root[data-text="large"] { font-size: 18px; }*/
+/*:root[data-motion="on"] *, :root[data-motion="on"] *::before, :root[data-motion="on"] *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }*/
+/*:root[data-contrast="on"] { filter: contrast(1.25); }*/
+
+.app-dialog {
+  --width: min(60rem, 95vw);
+  --spacing: 0;               /* Web Awesome's padding variable */
+}
+.app-dialog::part(dialog) {
+  background: transparent;
+  box-shadow: none;
+}
+.app-dialog::part(body) {
+  padding: 0;
+  overflow: visible;
+}
+
+/* give Tailwind its spacing unit back inside the card */
+.app-dialog .dialog-card {
+  --spacing: 0.25rem;
+}
