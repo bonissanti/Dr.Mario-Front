@@ -1,58 +1,62 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="icon" type="image/svg+xml" href="/vite.svg"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link href="./src/style.css" rel="stylesheet">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/themes/light.css" />
-      <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/shoelace-autoloader.js" defer></script>
-      <script src="https://kit.webawesome.com/9e9f882dd7754b4e.js" crossorigin="anonymous"></script>
-      <title>dr-mario-remake</title>
-  </head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/themes/light.css"/>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/shoelace-autoloader.js"
+            defer></script>
+    <script src="https://kit.webawesome.com/9e9f882dd7754b4e.js" crossorigin="anonymous"></script>
+    <title>dr-mario-remake</title>
+</head>
 
 
-  <body class="bg-[#f7f4ea] in-data-[theme=dark]:bg-[#111a16] text-[#17251f] in-data-[theme=dark]:text-[#eef4ef] flex flex-col min-h-screen">
-      <header class="sticky top-0 z-50 bg-[#f7f4ea]/95 in-data-[theme=dark]:bg-[#111a16]/95 backdrop-blur border-b border-[#17251f1c] in-data-[theme=dark]:border-[#eef4ef20]">
-          <nav aria-label="main-nav" class="max-w-310 mx-auto px-4 sm:px-7 h-[72px] flex items-center justify-between gap-4 relative">
-              <a href="/" data-link class="flex items-center gap-2.5 font-extrabold text-sm tracking-tight text-[#17251f] in-data-[theme=dark]:text-[#eef4ef] no-underline hover:text-[#17251f] in-data-[theme=dark]:hover:text-[#eef4ef]">
-                  <span class="block w-8.5 h-5 rounded-full bg-[#ff6257] border-2 border-[#17251f] overflow-hidden -rotate-35"><span class="block w-1/2 h-full bg-[#fffdf8] border-r-2 border-[#17251f]"></span></span>
-                  DR. MARIO REMAKE
-              </a>
-              <!-- mobile menu toggle (CSS only, replaces <details>) -->
-              <input id="nav-toggle" type="checkbox" class="peer sr-only" aria-label="Toggle menu">
+<body class="bg-[#f7f4ea] in-data-[theme=dark]:bg-[#111a16] text-[#17251f] in-data-[theme=dark]:text-[#eef4ef] flex flex-col min-h-screen">
+<header class="sticky top-0 z-50 bg-[#f7f4ea]/95 in-data-[theme=dark]:bg-[#111a16]/95 backdrop-blur border-b border-[#17251f1c] in-data-[theme=dark]:border-[#eef4ef20]">
+    <nav aria-label="main-nav"
+         class="max-w-310 mx-auto px-4 sm:px-7 h-[72px] flex items-center justify-between gap-4 relative">
+        <a href="/" data-link
+           class="flex items-center gap-2.5 font-extrabold text-sm tracking-tight text-[#17251f] in-data-[theme=dark]:text-[#eef4ef] no-underline hover:text-[#17251f] in-data-[theme=dark]:hover:text-[#eef4ef]">
+            <span class="block w-8.5 h-5 rounded-full bg-[#ff6257] border-2 border-[#17251f] overflow-hidden -rotate-35"><span
+                    class="block w-1/2 h-full bg-[#fffdf8] border-r-2 border-[#17251f]"></span></span>
+            DR. MARIO REMAKE
+        </a>
+        <!-- mobile menu toggle (CSS only, replaces <details>) -->
+        <input id="nav-toggle" type="checkbox" class="peer sr-only" aria-label="Toggle menu">
 
-              <!-- hamburger, mobile only -->
-              <label for="nav-toggle"
-                     class="md:hidden grid place-items-center w-10 h-10 rounded-full border border-[#17251f1c] bg-white/50 cursor-pointer transition duration-150 ease-out hover:bg-white peer-focus-visible:outline-2 peer-focus-visible:outline-[#8271e8]"
-                     aria-hidden="true">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-                      <path d="M4 7h16M4 12h16M4 17h16"/>
-                  </svg>
-              </label>
+        <!-- hamburger, mobile only -->
+        <label for="nav-toggle"
+               class="md:hidden grid place-items-center w-10 h-10 rounded-full border border-[#17251f1c] bg-white/50 cursor-pointer transition duration-150 ease-out hover:bg-white peer-focus-visible:outline-2 peer-focus-visible:outline-[#8271e8]"
+               aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round">
+                <path d="M4 7h16M4 12h16M4 17h16"/>
+            </svg>
+        </label>
 
-              <div class="hidden peer-checked:flex md:flex absolute md:static left-0 right-0 top-full md:top-auto bg-[#f7f4ea] in-data-[theme=dark]:bg-[#111a16] md:bg-transparent border-b md:border-0 border-[#17251f1c] px-4 py-4 md:p-0 flex-col md:flex-row md:items-center gap-3 md:gap-8 md:flex-1 md:justify-between">
-                  <div class="flex flex-col md:flex-row gap-3 md:gap-8 md:mx-auto text-base font-bold">
-                      <a href="/main-menu" data-link
-                         class="inline-block text-[#17251f]! in-data-[theme=dark]:text-[#eef4ef]! no-underline! transition duration-150 ease-out hover:text-[#ff6257]! hover:-translate-y-0.5">Play</a>
-                      <a href="/#community"
-                         class="inline-block text-[#17251f]! in-data-[theme=dark]:text-[#eef4ef]! no-underline! transition duration-150 ease-out hover:text-[#ff6257]! hover:-translate-y-0.5">Community</a>
-                      <a href="/#shop"
-                         class="inline-block text-[#17251f]! in-data-[theme=dark]:text-[#eef4ef]! no-underline! transition duration-150 ease-out hover:text-[#ff6257]! hover:-translate-y-0.5">Shop</a>
-                  </div>
+        <div class="hidden peer-checked:flex md:flex absolute md:static left-0 right-0 top-full md:top-auto bg-[#f7f4ea] in-data-[theme=dark]:bg-[#111a16] md:bg-transparent border-b md:border-0 border-[#17251f1c] px-4 py-4 md:p-0 flex-col md:flex-row md:items-center gap-3 md:gap-8 md:flex-1 md:justify-between">
+            <div class="flex flex-col md:flex-row gap-3 md:gap-8 md:mx-auto text-base font-bold">
+                <a href="/main-menu" data-link
+                   class="inline-block text-[#17251f]! in-data-[theme=dark]:text-[#eef4ef]! no-underline! transition duration-150 ease-out hover:text-[#ff6257]! hover:-translate-y-0.5">Play</a>
+                <a href="/#community"
+                   class="inline-block text-[#17251f]! in-data-[theme=dark]:text-[#eef4ef]! no-underline! transition duration-150 ease-out hover:text-[#ff6257]! hover:-translate-y-0.5">Community</a>
+                <a href="/#shop"
+                   class="inline-block text-[#17251f]! in-data-[theme=dark]:text-[#eef4ef]! no-underline! transition duration-150 ease-out hover:text-[#ff6257]! hover:-translate-y-0.5">Shop</a>
+            </div>
 
 
-
-                  <div class="flex items-center gap-2.5">
-                      <wa-button
-                              id="a11y-btn"
-                              appearance="plain"
-                              pill
-                              size="small"
-                              aria-label="Display and accessibility"
-                              aria-haspopup="dialog"
-                              aria-controls="a11y-dialog"
-                              class="
+            <div class="flex items-center gap-2.5">
+                <wa-button
+                        id="a11y-btn"
+                        appearance="plain"
+                        pill
+                        size="small"
+                        aria-label="Display and accessibility"
+                        aria-haspopup="dialog"
+                        aria-controls="a11y-dialog"
+                        class="
                                 transition duration-150 ease-out hover:-translate-y-0.5
                                 [&::part(base)]:bg-white/50!
                                 [&::part(base)]:border!
@@ -63,22 +67,23 @@
                                 [&::part(label)]:p-0!
                                 [&:hover::part(base)]:bg-white!
                             ">
-                          <wa-avatar initials="AA" label="" class="[--size:1.75rem]"></wa-avatar>
-                      </wa-button>
+                    <wa-avatar initials="AA" label="" class="[--size:1.75rem]"></wa-avatar>
+                </wa-button>
 
-                      <!-- TODO: put this in the main menu, people without an account can't see the money -->
-<!--                      &lt;!&ndash; wallet &ndash;&gt;-->
-<!--                      <div id="wallet" class="inline-flex items-center gap-1.5 rounded-full border border-[#17251f1c] bg-white/50 px-3.5 py-2.5 font-mono text-[13px] font-medium text-[#17251f]" aria-label="Your coins">-->
-<!--                          <svg aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#e7ad00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M14.8 8.5c-.7-.6-1.5-.9-2.7-.9-1.5 0-2.6.8-2.6 1.9 0 3 5.3 1.2 5.3 4.5 0 1.3-1.1 2.3-2.8 2.3-1.2 0-2.3-.4-3.1-1.1M12 5.5v13"/></svg>-->
-<!--                          <b id="wallet-coins" class="font-medium">1,200</b>-->
-<!--                      </div>-->
-                      <wa-button
-                              id="sign-in-btn"
-                              href="/login-signUp"
-                              data-link
-                              pill
-                              size="small"
-                              class="
+
+                <!-- TODO: put this in the main menu, people without an account can't see the money -->
+                <!--                      &lt;!&ndash; wallet &ndash;&gt;-->
+                <!--                      <div id="wallet" class="inline-flex items-center gap-1.5 rounded-full border border-[#17251f1c] bg-white/50 px-3.5 py-2.5 font-mono text-[13px] font-medium text-[#17251f]" aria-label="Your coins">-->
+                <!--                          <svg aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#e7ad00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M14.8 8.5c-.7-.6-1.5-.9-2.7-.9-1.5 0-2.6.8-2.6 1.9 0 3 5.3 1.2 5.3 4.5 0 1.3-1.1 2.3-2.8 2.3-1.2 0-2.3-.4-3.1-1.1M12 5.5v13"/></svg>-->
+                <!--                          <b id="wallet-coins" class="font-medium">1,200</b>-->
+                <!--                      </div>-->
+                <wa-button
+                        id="sign-in-btn"
+                        href="/login-signUp"
+                        data-link
+                        pill
+                        size="small"
+                        class="
                                  transition duration-150 ease-out hover:-translate-y-0.5
                                 [&::part(base)]:bg-[#17251f]
                                 [&::part(base)]:border-[#17251f]
@@ -88,231 +93,158 @@
                                 [&:hover::part(base)]:border-[#ff6257]
                                 [&:hover::part(base)]:text-[#17251f]
                             ">
-                          Sign in
-                      </wa-button>
-                  </div>
-              </div>
-          </nav>
-      </header>
+                    Sign in
+                </wa-button>
+            </div>
+        </div>
+    </nav>
+</header>
 
-      <!--    This is where all page content will be loaded-->
-      <div id="app" class="w-full flex-1"></div>
+<!--    This is where all page content will be loaded-->
+<div id="app" class="w-full flex-1"></div>
 
-      <footer class="border-t border-[#17251f1c] in-data-[theme=dark]:border-[#eef4ef20] bg-[#f7f4ea] in-data-[theme=dark]:bg-[#111a16] text-[#66716b] in-data-[theme=dark]:text-[#a9b5ae]">
-          <div class="max-w-295 mx-auto min-h-28 px-7 py-6 flex flex-col md:flex-row justify-between items-center gap-3 text-[11px]">
-              <div class="flex items-center gap-2.5 text-[#17251f] in-data-[theme=dark]:text-[#eef4ef]"><span class="block w-8.5 h-5 rounded-full bg-[#ff6257] border-2 border-[#17251f] overflow-hidden -rotate-35"><span class="block w-1/2 h-full bg-[#fffdf8] border-r-2 border-[#17251f]"></span></span><strong>DR. MARIO REMAKE</strong></div>
-              <p class="m-0! text-center">Built for curious minds and quick fingers.</p>
-              <span class="font-mono text-[9px]">&copy; 2025 FAN PROJECT &middot; ALL RIGHTS RESERVED TO NINTENDO</span>
-          </div>
-      </footer>
+<footer class="border-t border-[#17251f1c] in-data-[theme=dark]:border-[#eef4ef20] bg-[#f7f4ea] in-data-[theme=dark]:bg-[#111a16] text-[#66716b] in-data-[theme=dark]:text-[#a9b5ae]">
+    <div class="max-w-295 mx-auto min-h-28 px-7 py-6 flex flex-col md:flex-row justify-between items-center gap-3 text-[11px]">
+        <div class="flex items-center gap-2.5 text-[#17251f] in-data-[theme=dark]:text-[#eef4ef]"><span
+                class="block w-8.5 h-5 rounded-full bg-[#ff6257] border-2 border-[#17251f] overflow-hidden -rotate-35"><span
+                class="block w-1/2 h-full bg-[#fffdf8] border-r-2 border-[#17251f]"></span></span><strong>DR. MARIO
+            REMAKE</strong></div>
+        <p class="m-0! text-center">Built for curious minds and quick fingers.</p>
+        <span class="font-mono text-[9px]">&copy; 2025 FAN PROJECT &middot; ALL RIGHTS RESERVED TO NINTENDO</span>
+    </div>
+</footer>
 
-      <wa-dialog
-              id="a11y-dialog"
-              label="Display &amp; accessibility"
-              light-dismiss
-              class="
-    [--width:57.5rem] [--spacing:0] [--backdrop-filter:blur(4px)]
-    [--wa-form-control-activated-color:#17251f]
-    in-data-[theme=dark]:[--wa-form-control-activated-color:#eef4ef]
+<wa-dialog id="a11y-dialog" class="app-dialog" without-header aria-labelledby="a11y-dialog-title">
 
-    [&::part(dialog)]:rounded-[21px] md:[&::part(dialog)]:rounded-[28px]
-    [&::part(dialog)]:border-2 [&::part(dialog)]:border-[#17251f]
-    [&::part(dialog)]:bg-[#f7f4ea] in-data-[theme=dark]:[&::part(dialog)]:bg-[#111a16]
-    [&::part(dialog)]:text-[#17251f] in-data-[theme=dark]:[&::part(dialog)]:text-[#eef4ef]
-    [&::part(dialog)]:shadow-[6px_6px_0_#0e1814] md:[&::part(dialog)]:shadow-[12px_12px_0_#0e1814]
+    <div class="dialog-card w-full rounded-3xl bg-[#f7f5ea] border-2 border-[#16241f] text-[#16241f]">
 
-    [&::part(header)]:px-7.5 [&::part(header)]:pt-7 [&::part(header)]:pb-6
-    [&::part(header)]:border-b [&::part(header)]:border-[#17251f1c]
-    in-data-[theme=dark]:[&::part(header)]:border-[#eef4ef20]
-    [&::part(body)]:p-0
 
-    [&::part(close-button__base)]:rounded-full [&::part(close-button__base)]:border
-    [&::part(close-button__base)]:border-[#17251f1c] [&::part(close-button__base)]:bg-[#fffdf8]
-  "
-      >
-          <!-- Title block goes in the label slot; WA keeps its own close button -->
-          <span slot="label" class="block">
-    <span class="block font-mono text-[10px] tracking-widest opacity-70">NO ACCOUNT NEEDED</span>
-    <span class="block my-1.5 text-[32px] font-extrabold tracking-tighter leading-tight">Display &amp; accessibility</span>
-    <span class="block text-xs font-normal tracking-normal text-[#66716b] in-data-[theme=dark]:text-[#a9b5ae]">Set up the clinic before you play. Changes apply instantly on this device.</span>
-  </span>
+        <!-- Header: its border-b is the top of the T -->
+        <header class="relative px-8 pt-8 pb-8 border-b border-neutral-300">
+            <span class="font-mono text-xs tracking-widest uppercase">No account needed</span>
+            <h1 id="a11y-dialog-title" class="mt-3 text-5xl font-normal tracking-tight">
+                Display &amp; accessibility
+            </h1>
+            <p class="mt-3 text-neutral-500">
+                Set up the clinic before you play. Changes apply instantly on this device.
+            </p>
 
-          <div class="grid w-full grid-cols-1 md:grid-cols-[1.08fr_.92fr]">
+            <button
+                    class="absolute top-8 right-8 size-12 grid place-items-center rounded-full bg-white border border-neutral-200"
+                    aria-label="Close"
+                    onclick="document.getElementById('a11y-dialog').open = false">
+                ✕
+            </button>
+        </header>
 
-              <!-- ───────── 01 Accessibility ───────── -->
-              <section class="px-7.5 pt-6 pb-7">
-                  <div class="flex items-center gap-3 pb-3.5 border-b border-[#17251f1c] in-data-[theme=dark]:border-[#eef4ef20]">
-                      <span class="grid place-items-center size-8 rounded-[9px] bg-[#e4f4c5] in-data-[theme=dark]:bg-[#2d3c25] font-mono text-[10px]">01</span>
-                      <div class="flex flex-col gap-0.5"><b class="text-sm">Accessibility</b><small class="text-[10px] text-[#66716b] in-data-[theme=dark]:text-[#a9b5ae]">Visuals, motion and sound</small></div>
-                  </div>
+        <!-- Two columns: no gap, no top padding on the grid itself -->
+        <div class="grid grid-cols-1 md:grid-cols-2">
 
-                  <!-- switch rows: text stays in Tailwind; wa-switch's label is visually hidden but still the accessible name -->
-                  <div class="min-h-17 flex items-center justify-between gap-4 border-b border-[#17251f1c] in-data-[theme=dark]:border-[#eef4ef20]">
-                      <span class="flex flex-col gap-0.5"><b class="text-xs">Piece shapes</b><small class="text-[10px] text-[#66716b] in-data-[theme=dark]:text-[#a9b5ae]">Extra symbols for color cues</small></span>
-                      <wa-switch data-a11y-toggle="shapes" class="shrink-0 [--width:44px] [--height:26px] [--thumb-size:20px]"><span class="sr-only">Piece shapes</span></wa-switch>
-                  </div>
+            <!-- Left column -->
+            <section class="p-8">
+                <div class="flex items-start gap-4 pb-6 border-b border-neutral-200">
+                    <span class="grid place-items-center size-14 rounded-xl bg-[#e3f3c4] font-mono text-sm font-bold">01</span>
+                    <div>
+                        <h2 class="text-xl font-semibold">Accessibility</h2>
+                        <p class="text-sm text-neutral-500">Visuals, motion and sound</p>
+                    </div>
+                </div>
 
-                  <div class="min-h-17 flex items-center justify-between gap-4 border-b border-[#17251f1c] in-data-[theme=dark]:border-[#eef4ef20]">
-                      <span class="flex flex-col gap-0.5"><b class="text-xs">High contrast</b><small class="text-[10px] text-[#66716b] in-data-[theme=dark]:text-[#a9b5ae]">Stronger surface separation</small></span>
-                      <wa-switch data-a11y-toggle="contrast" class="shrink-0 [--width:44px] [--height:26px] [--thumb-size:20px]"><span class="sr-only">High contrast</span></wa-switch>
-                  </div>
+                <div class="divide-y divide-neutral-200">
+                    <!-- each row -->
+                    <div class="flex items-center justify-between py-5">
+                        <div>
+                            <p class="font-semibold">Piece shapes</p>
+                            <p class="text-sm text-neutral-500">Extra symbols for color cues</p>
+                        </div>
+                        <wa-switch></wa-switch>
+                    </div>
+                    <!-- more rows... -->
 
-                  <div class="min-h-17 flex items-center justify-between gap-4 border-b border-[#17251f1c] in-data-[theme=dark]:border-[#eef4ef20]">
-                      <span class="flex flex-col gap-0.5"><b class="text-xs">Reduce motion</b><small class="text-[10px] text-[#66716b] in-data-[theme=dark]:text-[#a9b5ae]">Calmer transitions</small></span>
-                      <wa-switch data-a11y-toggle="motion" class="shrink-0 [--width:44px] [--height:26px] [--thumb-size:20px]"><span class="sr-only">Reduce motion</span></wa-switch>
-                  </div>
+                    <div class="flex items-center justify-between py-5">
+                        <div>
+                            <p class="font-semibold">High contrast</p>
+                            <p class="text-sm text-neutral-500">Stronger surface separation</p>
+                        </div>
+                        <wa-switch></wa-switch>
+                    </div>
 
-                  <div class="min-h-17 flex items-center justify-between gap-4 border-b border-[#17251f1c] in-data-[theme=dark]:border-[#eef4ef20]">
-                      <span class="flex flex-col gap-0.5"><b class="text-xs">Sound</b><small class="text-[10px] text-[#66716b] in-data-[theme=dark]:text-[#a9b5ae]">Music and effects</small></span>
-                      <wa-switch data-a11y-toggle="sound" checked class="shrink-0 [--width:44px] [--height:26px] [--thumb-size:20px]"><span class="sr-only">Sound</span></wa-switch>
-                  </div>
 
-                  <!-- text size: was three <button aria-pressed>; now a radio group (arrow keys + one tab stop for free) -->
-                  <div class="min-h-17 flex items-center justify-between gap-4 border-b border-[#17251f1c] in-data-[theme=dark]:border-[#eef4ef20]">
-                      <span class="flex flex-col gap-0.5"><b class="text-xs">Text size</b><small class="text-[10px] text-[#66716b] in-data-[theme=dark]:text-[#a9b5ae]">Interface type scale</small></span>
-                      <wa-radio-group
-                              label="Text size" name="text-size" value="normal" orientation="horizontal"
-                              data-a11y-text-group
-                              class="
-            [&::part(form-control-label)]:sr-only
-            [&::part(radios)]:gap-0 [&::part(radios)]:p-0.75 [&::part(radios)]:rounded-[11px]
-            [&::part(radios)]:border [&::part(radios)]:border-[#17251f1c]
-            in-data-[theme=dark]:[&::part(radios)]:border-[#eef4ef20]
-            [&::part(radios)]:bg-[#f7f4ea] in-data-[theme=dark]:[&::part(radios)]:bg-[#111a16]
-          "
-                      >
-                          <wa-radio value="small" class="
-            [&::part(control)]:hidden [&::part(label)]:p-0
-            grid place-items-center w-9.5 h-8 rounded-lg text-[13px] font-extrabold cursor-pointer
-            [--seg-on:#17251f] [--seg-on-text:#f7f4ea]
-            in-data-[theme=dark]:[--seg-on:#eef4ef] in-data-[theme=dark]:[--seg-on-text:#111a16]
-            [&:state(checked)]:bg-(--seg-on) [&:state(checked)]:text-(--seg-on-text)
-          ">A-</wa-radio>
-                          <wa-radio value="normal" class="
-            [&::part(control)]:hidden [&::part(label)]:p-0
-            grid place-items-center w-9.5 h-8 rounded-lg text-[13px] font-extrabold cursor-pointer
-            [--seg-on:#17251f] [--seg-on-text:#f7f4ea]
-            in-data-[theme=dark]:[--seg-on:#eef4ef] in-data-[theme=dark]:[--seg-on-text:#111a16]
-            [&:state(checked)]:bg-(--seg-on) [&:state(checked)]:text-(--seg-on-text)
-          ">A</wa-radio>
-                          <wa-radio value="large" class="
-            [&::part(control)]:hidden [&::part(label)]:p-0
-            grid place-items-center w-9.5 h-8 rounded-lg text-[13px] font-extrabold cursor-pointer
-            [--seg-on:#17251f] [--seg-on-text:#f7f4ea]
-            in-data-[theme=dark]:[--seg-on:#eef4ef] in-data-[theme=dark]:[--seg-on-text:#111a16]
-            [&:state(checked)]:bg-(--seg-on) [&:state(checked)]:text-(--seg-on-text)
-          ">A+</wa-radio>
-                      </wa-radio-group>
-                  </div>
-              </section>
+                    <div class="flex items-center justify-between py-5">
+                        <div>
+                            <p class="font-semibold">Reduce motion</p>
+                            <p class="text-sm text-neutral-500">Calmer transitions</p>
+                        </div>
+                        <wa-switch></wa-switch>
+                    </div>
 
-              <!-- ───────── 02 Appearance ───────── -->
-              <section class="px-7.5 pt-6 pb-7 border-t md:border-t-0 md:border-l border-[#17251f1c] in-data-[theme=dark]:border-[#eef4ef20]">
-                  <div class="flex items-center gap-3 pb-3.5 border-b border-[#17251f1c] in-data-[theme=dark]:border-[#eef4ef20]">
-                      <span class="grid place-items-center size-8 rounded-[9px] bg-[#e4f4c5] in-data-[theme=dark]:bg-[#2d3c25] font-mono text-[10px]">02</span>
-                      <div class="flex flex-col gap-0.5"><b class="text-sm">Appearance</b><small class="text-[10px] text-[#66716b] in-data-[theme=dark]:text-[#a9b5ae]">Choose your clinic light</small></div>
-                  </div>
 
-                  <!-- theme cards: `radios` part is a flex container by default, so we turn it into a 3-col grid -->
-                  <wa-radio-group
-                          label="Appearance mode" name="theme" value="auto" orientation="horizontal"
-                          data-a11y-theme-group
-                          class="
-          mt-4 mb-5.5
-          [&::part(form-control-label)]:sr-only
-          [&::part(radios)]:grid [&::part(radios)]:grid-cols-3 [&::part(radios)]:gap-1.75
-        "
-                  >
-                      <wa-radio value="light" class="
-          [&::part(control)]:hidden [&::part(label)]:w-full [&::part(label)]:p-0
-          min-w-0 p-1.75 pb-2.5 rounded-[13px] border cursor-pointer
-          border-[#17251f1c] bg-[#fffdf8] text-[#17251f] [--sel:#17251f]
-          in-data-[theme=dark]:border-[#eef4ef20] in-data-[theme=dark]:bg-[#19241f]
-          in-data-[theme=dark]:text-[#eef4ef] in-data-[theme=dark]:[--sel:#eef4ef]
-          [&:state(checked)]:border-(--sel) [&:state(checked)]:shadow-[0_0_0_1px_var(--sel)]
-        ">
-          <span class="flex flex-col items-start gap-0.5 text-left">
-            <span aria-hidden="true" class="relative block shrink-0 w-full h-12 mb-1 overflow-hidden rounded-lg border border-[#17251f1d] bg-[#f7f4ea]">
-              <span class="absolute inset-2 rounded-[5px] border border-[#17251f1d] bg-[#fffdf8]"></span>
-            </span>
-            <b class="text-xs">Light</b>
-            <small class="text-[10px] text-[#66716b] in-data-[theme=dark]:text-[#a9b5ae]">Bright &amp; warm</small>
-          </span>
-                      </wa-radio>
+                    <div class="flex items-center justify-between py-5">
+                        <div>
+                            <p class="font-semibold">Sound</p>
+                            <p class="text-sm text-neutral-500">Music and effects</p>
+                        </div>
+                        <wa-switch></wa-switch>
+                    </div>
 
-                      <wa-radio value="dark" class="
-          [&::part(control)]:hidden [&::part(label)]:w-full [&::part(label)]:p-0
-          min-w-0 p-1.75 pb-2.5 rounded-[13px] border cursor-pointer
-          border-[#17251f1c] bg-[#fffdf8] text-[#17251f] [--sel:#17251f]
-          in-data-[theme=dark]:border-[#eef4ef20] in-data-[theme=dark]:bg-[#19241f]
-          in-data-[theme=dark]:text-[#eef4ef] in-data-[theme=dark]:[--sel:#eef4ef]
-          [&:state(checked)]:border-(--sel) [&:state(checked)]:shadow-[0_0_0_1px_var(--sel)]
-        ">
-          <span class="flex flex-col items-start gap-0.5 text-left">
-            <span aria-hidden="true" class="relative block shrink-0 w-full h-12 mb-1 overflow-hidden rounded-lg border border-[#17251f1d] bg-[#0c1411]">
-              <span class="absolute inset-2 rounded-[5px] border border-[#ffffff1f] bg-[#19241f]"></span>
-            </span>
-            <b class="text-xs">Dark</b>
-            <small class="text-[10px] text-[#66716b] in-data-[theme=dark]:text-[#a9b5ae]">Low-light lab</small>
-          </span>
-                      </wa-radio>
 
-                      <wa-radio value="auto" class="
-          [&::part(control)]:hidden [&::part(label)]:w-full [&::part(label)]:p-0
-          min-w-0 p-1.75 pb-2.5 rounded-[13px] border cursor-pointer
-          border-[#17251f1c] bg-[#fffdf8] text-[#17251f] [--sel:#17251f]
-          in-data-[theme=dark]:border-[#eef4ef20] in-data-[theme=dark]:bg-[#19241f]
-          in-data-[theme=dark]:text-[#eef4ef] in-data-[theme=dark]:[--sel:#eef4ef]
-          [&:state(checked)]:border-(--sel) [&:state(checked)]:shadow-[0_0_0_1px_var(--sel)]
-        ">
-          <span class="flex flex-col items-start gap-0.5 text-left">
-            <span aria-hidden="true" class="relative block shrink-0 w-full h-12 mb-1 overflow-hidden rounded-lg border border-[#17251f1d] bg-[linear-gradient(115deg,#f7f4ea_50%,#0c1411_50%)]">
-              <span class="absolute inset-2 rounded-[5px] border border-[#17251f1d] bg-[linear-gradient(115deg,#fffdf8_50%,#19241f_50%)]"></span>
-            </span>
-            <b class="text-xs">Auto</b>
-            <small class="text-[10px] text-[#66716b] in-data-[theme=dark]:text-[#a9b5ae]">Match device</small>
-          </span>
-                      </wa-radio>
-                  </wa-radio-group>
+                    <div class="flex items-center justify-between py-5">
+                        <div>
+                            <p id="text-size-label" class="font-semibold">Text size</p>
+                            <p class="text-sm text-neutral-500">Interface type scale</p>
+                        </div>
 
-                  <!-- control preset: form-control tokens set once on the wrapper and inherited by both selects -->
-                  <div class="
-          grid grid-cols-2 gap-2.25 p-4 rounded-[14px] bg-[#e4e0ff] in-data-[theme=dark]:bg-[#302c50]
-          [--wa-form-control-background-color:#fffdf8] in-data-[theme=dark]:[--wa-form-control-background-color:#19241f]
-          [--wa-form-control-border-color:#17251f1c] in-data-[theme=dark]:[--wa-form-control-border-color:#eef4ef20]
-          [--wa-form-control-border-radius:9px]
-        ">
-                      <span class="col-span-2 font-mono text-[10px] font-bold tracking-widest">CONTROL PRESET</span>
+                        <div role="radiogroup" aria-labelledby="text-size-label"
+                             class="inline-flex gap-1 rounded-2xl border border-neutral-200 bg-[#faf8f0] p-1">
 
-                      <wa-select id="a11y-keyboard" value="arrows" class="text-xs">
-                          <span slot="label" class="font-mono text-[9px]">KEYBOARD</span>
-                          <wa-option value="arrows">Arrow keys</wa-option>
-                          <wa-option value="wasd">WASD</wa-option>
-                      </wa-select>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="text-size" value="small" class="peer sr-only">
+                                <span class="grid h-11 w-14 place-items-center rounded-xl text-sm font-bold text-[#16241f] transition-colors
+                                               hover:bg-neutral-200/60
+                                               peer-checked:bg-[#16241f] peer-checked:text-white peer-checked:hover:bg-[#16241f]
+                                               peer-focus-visible:ring-2 peer-focus-visible:ring-sky-400">A-</span>
+                            </label>
 
-                      <wa-select id="a11y-touch" value="swipe" class="text-xs">
-                          <span slot="label" class="font-mono text-[9px]">TOUCH</span>
-                          <wa-option value="swipe">Swipe gestures</wa-option>
-                          <wa-option value="buttons">On-screen buttons</wa-option>
-                      </wa-select>
-                  </div>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="text-size" value="medium" class="peer sr-only" checked>
+                                <span class="grid h-11 w-14 place-items-center rounded-xl text-base font-bold text-[#16241f] transition-colors
+                                               hover:bg-neutral-200/60
+                                               peer-checked:bg-[#16241f] peer-checked:text-white peer-checked:hover:bg-[#16241f]
+                                               peer-focus-visible:ring-2 peer-focus-visible:ring-sky-400">A</span>
+                            </label>
 
-                  <wa-button
-                          data-dialog="close" pill
-                          class="
-          mt-4 w-full
-          [&::part(base)]:w-full [&::part(base)]:border-0
-          [&::part(base)]:bg-[#17251f] [&::part(base)]:text-[#f7f4ea]
-          in-data-[theme=dark]:[&::part(base)]:bg-[#eef4ef] in-data-[theme=dark]:[&::part(base)]:text-[#111a16]
-          [&::part(base)]:text-[13px] [&::part(base)]:font-extrabold
-        "
-                  >Done <span aria-hidden="true" class="ml-2">&rarr;</span></wa-button>
-              </section>
-          </div>
-      </wa-dialog>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="text-size" value="large" class="peer sr-only">
+                                <span class="grid h-11 w-14 place-items-center rounded-xl text-xl font-bold text-[#16241f] transition-colors
+                                               hover:bg-neutral-200/60
+                                               peer-checked:bg-[#16241f] peer-checked:text-white peer-checked:hover:bg-[#16241f]
+                                               peer-focus-visible:ring-2 peer-focus-visible:ring-sky-400">A+</span>
+                            </label>
 
-      <script type="module" src="/src/main.ts"></script>
-  </body>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Right column: border-l is the stem of the T -->
+            <section class="p-8 border-t md:border-t-0 md:border-l border-neutral-300">
+                <div class="flex items-start gap-4 pb-6 border-b border-neutral-200">
+                    <span class="grid place-items-center size-14 rounded-xl bg-[#e3f3c4] font-mono text-sm font-bold">02</span>
+                    <div>
+                        <h2 class="text-xl font-semibold">Appearance</h2>
+                        <p class="text-sm text-neutral-500">Choose your clinic light</p>
+                    </div>
+                </div>
+                <!-- theme cards, control preset, Done button -->
+            </section>
+
+        </div>
+    </div>
+</wa-dialog>
+
+
+<script type="module" src="/src/main.ts"></script>
+</body>
 </html>
 
 
