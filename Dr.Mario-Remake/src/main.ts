@@ -64,6 +64,15 @@ document.addEventListener('click', (event) => {
     }
 })
 
+//TODO: put in an accessibility component
+const btn: HTMLElement | null = document.getElementById('a11y-btn');
+const dialog = document.getElementById('a11y-dialog') as (HTMLElement & { open: boolean }) | null;
+
+btn?.addEventListener('click', () => {
+    if (dialog)
+        dialog.open = true
+});
+
 const countriesList = countries.CountryNames;
 Promise.all([
     customElements.whenDefined('wa-input'),
