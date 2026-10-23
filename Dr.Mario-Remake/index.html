@@ -58,16 +58,16 @@
                         aria-controls="a11y-dialog"
                         class="
                                 transition duration-150 ease-out hover:-translate-y-0.5
-                                [&::part(base)]:bg-white/50!
-                                [&::part(base)]:border!
-                                [&::part(base)]:border-[#17251f1c]!
-                                [&::part(base)]:shadow-none!
-                                [&::part(base)]:p-1.5!
-                                [&::part(base)]:min-h-0!
-                                [&::part(label)]:p-0!
+                                [&::part(base)]:bg-white/50
+                                [&::part(base)]:border
+                                [&::part(base)]:border-[#17251f1c]
+                                [&::part(base)]:shadow-none
+                                [&::part(base)]:p-1.5
+                                [&::part(base)]:min-h-0
+                                [&::part(label)]:p-0
                                 [&:hover::part(base)]:bg-white!
                             ">
-                    <wa-avatar initials="AA" label="" class="[--size:1.75rem]"></wa-avatar>
+                    <wa-icon name="universal-access" label="Display and accessibility" class="text-xl"></wa-icon>
                 </wa-button>
 
 
@@ -234,7 +234,83 @@
                         <p class="text-sm text-neutral-500">Choose your clinic light</p>
                     </div>
                 </div>
-                <!-- theme cards, control preset, Done button -->
+                <!-- Theme cards -->
+                <div role="radiogroup" aria-label="Appearance" class="grid grid-cols-3 gap-3 pt-6">
+
+                    <!-- Light -->
+                    <label class="block w-full cursor-pointer">
+                        <input type="radio" name="theme" value="light" class="peer sr-only">
+                        <div class="h-full rounded-2xl border-2 border-neutral-200 bg-[#fffdf8] p-3 transition
+                peer-checked:border-[#16241f]
+                peer-focus-visible:ring-2 peer-focus-visible:ring-sky-400">
+                            <div class="grid h-[4.5rem] place-items-center rounded-xl border border-neutral-200 bg-[#f4f2e8] p-2">
+                                <div class="h-full w-full rounded-lg border border-neutral-200 bg-[#fffdf8]"></div>
+                            </div>
+                            <p class="mt-3 text-sm font-semibold">Light</p>
+                            <p class="text-xs text-neutral-500">Bright &amp; warm</p>
+                        </div>
+                    </label>
+
+                    <!-- Dark and Auto: same wrapper classes as Light, only the preview and text change -->
+                    <!-- Dark -->
+                    <label class="block w-full cursor-pointer">
+                        <input type="radio" name="theme" value="dark" class="peer sr-only">
+                        <div class="h-full rounded-2xl border-2 border-neutral-200 bg-[#fffdf8] p-3 transition
+                peer-checked:border-[#16241f]
+                peer-focus-visible:ring-2 peer-focus-visible:ring-sky-400">
+                            <div class="grid h-[4.5rem] place-items-center rounded-xl bg-[#0c1511] p-2">
+                                <div class="h-full w-full rounded-lg border border-white/10 bg-[#1b2823]"></div>
+                            </div>
+                            <p class="mt-3 text-sm font-semibold">Dark</p>
+                            <p class="text-xs text-neutral-500">Low-light tab</p>
+                        </div>
+                    </label>
+
+                    <!-- Auto -->
+                    <label class="block w-full cursor-pointer">
+                        <input type="radio" name="theme" value="auto" class="peer sr-only">
+                        <div class="h-full rounded-2xl border-2 border-neutral-200 bg-[#fffdf8] p-3 transition
+                peer-checked:border-[#16241f]
+                peer-focus-visible:ring-2 peer-focus-visible:ring-sky-400">
+                            <div class="relative h-[4.5rem] overflow-hidden rounded-xl bg-[#f4f2e8]">
+                                <!-- dark half, clipped diagonally -->
+                                <div class="absolute inset-0 bg-[#0c1511] [clip-path:polygon(60%_0,100%_0,100%_100%,40%_100%)]"></div>
+                                <!-- inner panel, same trick -->
+                                    <div class="absolute inset-2 rounded-lg border border-neutral-200 bg-[#fffdf8]"></div>
+                                <div class="absolute inset-2 rounded-lg border border-white/10 bg-[#1b2823]
+                                [clip-path:polygon(60%_0,100%_0,100%_100%,40%_100%)]"></div>
+                            </div>
+                            <p class="mt-3 text-sm font-semibold">Light</p>
+                            <p class="text-xs text-neutral-500">Bright &amp; warm</p>
+                        </div>
+                    </label>
+
+
+                </div>
+
+                <!-- Control preset -->
+                <div class="mt-6 rounded-2xl bg-[#e3e0fb] p-5">
+                    <p class="font-mono text-xs uppercase tracking-widest">Control preset</p>
+
+                    <div class="mt-4 grid grid-cols-2 gap-4">
+                        <wa-select label="Keyboard" value="arrows" size="small">
+                            <wa-option value="arrows">Arrow keys</wa-option>
+                            <wa-option value="wasd">WASD</wa-option>
+                        </wa-select>
+
+                        <wa-select label="Touch" value="swipe" size="small">
+                            <wa-option value="swipe">Swipe gesture</wa-option>
+                            <wa-option value="tap">Tap zones</wa-option>
+                        </wa-select>
+                    </div>
+                </div>
+
+                <!-- Done Button -->
+                <wa-button class="done-btn mt-6 w-full" appearance="filled" size="medium">
+                    Done
+                    <wa-icon slot="end" name="arrow-right"></wa-icon>
+                </wa-button>
+
             </section>
 
         </div>

@@ -73,6 +73,24 @@ btn?.addEventListener('click', () => {
         dialog.open = true
 });
 
+const applyTheme = (value: string) => {
+    const dark = value === 'dark' || (value === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+
+    document.documentElement.classList.toggle('dark', dark);
+};
+
+document.querySelectorAll<HTMLInputElement>('input[name="theme"]').forEach((input) => {
+    input.addEventListener('change', () => {
+        localStorage.setItem('theme', input.value);
+        applyTheme(input.value);
+    })
+})
+
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+    if ((localStorage.getItem('theme') || 'auto') === 'auto')
+        applyTheme('auto')
+});
+
 const countriesList = countries.CountryNames;
 Promise.all([
     customElements.whenDefined('wa-input'),
