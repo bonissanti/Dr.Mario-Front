@@ -85,6 +85,21 @@ button:focus-visible {
 }
 }
 
+.done-btn::part(base),
+.done-btn::part(button) {
+  background: #16241f;
+  border-color: #16241f;
+  color: #fff;
+  border-radius: 1rem;
+  font-weight: 600;
+}
+
+.done-btn::part(base):hover,
+.done-btn::part(button):hover {
+  background: #22352d;
+}
+
+
 :not(:defined) {
   visibility: hidden;
 }
